@@ -3,6 +3,10 @@ import { initComments, isCommentMode, attachCanvasSlot, refreshPins } from './co
 // Aurelia design viewer — lists every /artifacts/**/*.html file and previews it in an iframe.
 const sources = import.meta.glob('/artifacts/**/*.html', { query: '?raw', import: 'default', eager: true });
 
+// Site base path: '/' locally and on Vercel, '/<repo>/' on GitHub Pages.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (p) => BASE + p;
+
 const HOME = '/artifacts/pages/home.html';
 const KIT = '/artifacts/_all-components.html';
 
@@ -146,7 +150,7 @@ function renderCanvas() {
       <div class="flex flex-none items-center gap-2">
         <span class="screen-res-badge font-mono text-ink-muted">${baseW}px</span>
         <button type="button" class="cursor-pointer text-label text-ink hover:underline" data-focus="${item.path}">Focus ⤢</button>
-        <a href="${item.path}" target="_blank" rel="noopener" class="text-ink-muted hover:text-ink" aria-label="Open ${item.title} in a new tab">↗</a>
+        <a href="${url(item.path)}" target="_blank" rel="noopener" class="text-ink-muted hover:text-ink" aria-label="Open ${item.title} in a new tab">↗</a>
       </div>
     `;
 
@@ -173,7 +177,7 @@ function renderCanvas() {
     frameInner.style.transformOrigin = 'top left';
 
     const iframe = document.createElement('iframe');
-    iframe.src = item.path;
+    iframe.src = url(item.path);
     iframe.title = item.title;
     iframe.loading = 'lazy';
     iframe.className = 'w-full border-0 pointer-events-none select-none';
@@ -249,7 +253,7 @@ function render() {
   if (state.mode === 'canvas') {
     $('title').textContent = 'Canvas · All screens';
     $('crumb').textContent = 'Overview · Simultaneous view';
-    $('open').href = '/#canvas';
+    $('open').href = url('/#canvas');
     wrap.classList.add('hidden');
     code.classList.add('hidden');
     canvasWrap.classList.remove('hidden');
@@ -268,10 +272,10 @@ function render() {
   state.path = item.path;
   $('title').textContent = item.title;
   $('crumb').textContent = item.group + ' · ' + item.path.replace('/artifacts/', '');
-  $('open').href = item.path;
+  $('open').href = url(item.path);
   if (frame.dataset.src !== item.path) {
     frame.dataset.src = item.path;
-    frame.src = item.path;
+    frame.src = url(item.path);
   }
   code.querySelector('code').textContent = item.raw;
   wrap.style.width = state.width;
@@ -307,7 +311,7 @@ async function copyText(text) {
 
 async function copyHtml() {
   if (state.mode === 'canvas') {
-    await copyText(window.location.origin + '/#canvas');
+    await copyText(window.location.origin + url('/#canvas'));
     toast('Canvas URL copied');
     return;
   }
@@ -323,6 +327,7 @@ frame.addEventListener('load', () => {
   applyTheme();
   let p = null;
   try { p = frame.contentWindow?.location.pathname; } catch { /* cross-origin */ }
+  if (p && BASE && p.startsWith(BASE + '/')) p = p.slice(BASE.length);
   if (p && p !== state.path && items.some((i) => i.path === p)) {
     frame.dataset.src = p;
     location.hash = '#' + p;
