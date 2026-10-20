@@ -45,7 +45,7 @@ In Tailwind they are `--color-<name>` utilities (`bg-surface-200`, `text-ink-mut
 | `neutral-line` | #a3a19c | #75736e | Idle dot and sparkline; early pipeline stages |
 | `notify` | #bd5a10 | #f39a3c | counter badge on the rail (pending approvals) |
 | `on-notify` | #ffffff | #1a1a18 | number on `notify` |
-| `chrome` | #d6c7c6 | #3a3232 | dusty-pink window frame around the shell — never inside content |
+| `chrome` | #d6c7c6 | #3a3232 | reserved; screens no longer use a frame around the shell — never inside content |
 | `focus` | #1c1c1a | #f1f0ed | 2px focus ring with 2px offset |
 
 There is no brand hue: the UI is warm neutrals + `ink`. Colour is reserved for **status**.
@@ -74,7 +74,7 @@ There is no brand hue: the UI is warm neutrals + `ink`. Colour is reserved for *
 
 ## 2. Layout rules and patterns
 
-- **Window:** `.frame` (20px padding on `chrome`) → `.shell` (rounded 18px, `surface-150`, 1px `border`).
+- **Window:** `.frame` (no padding) → `.shell` (`surface-150`, edge to edge, no outer border or rounding; the page background is `surface-150` too).
 - **Shell:** `.rail` 56px icon rail (logo + 9 sections, active `.rail-btn.on` = raised white tile, badge for pending approvals) → `.side` 248px contextual sidebar (h2, `.nav` items with mono counters, `.group` headings, stage `.dot`s) → `.main` workspace (`surface-100`, padding 20/32/32, `gap` 24).
 - **Top bar** (`.top`): breadcrumbs left (`Meridian Supply / <b>Page</b>`), tools right (search 240px with `⌘K`, segmented control, **one primary button** last). Bottom border `border-subtle`.
 - **Page header:** `.h1` + mono `.meta` line joined with “ · ”.
@@ -85,7 +85,7 @@ There is no brand hue: the UI is warm neutrals + `ink`. Colour is reserved for *
 - **Pipeline stages:** Qualified, Discovery → `neutral-line`; Proposal → `ink-muted`; Negotiation → `ink`; Closed won → `success-line`; Closed lost → `danger`.
 - **Agents** are first-class: avatar = `agent-mark` circle with a pixel glyph; card shows role, status pill, current activity, mode (*Act autonomously* / *Act with approval*), success rate, actions today and a 64×22 sparkline in the status tone. Agent actions that need a human go to **Approvals** and show the `notify` badge.
 - **Deltas:** `.up` green / `.down` red mean *good* / *bad*, not direction (sales cycle −3 d is `.up`).
-- **Responsive (≤760px):** rail becomes a horizontal scroll row, sidebar stacks above content, `.g4`/`.g3` → 2 columns, `.g2` → 1, workspace padding 16, no frame.
+- **Responsive (≤760px):** rail becomes a horizontal scroll row, sidebar stacks above content, `.g4`/`.g3` → 2 columns, `.g2` → 1, workspace padding 16.
 - **Focus:** 2px `focus` outline, 2px offset, on every interactive element.
 - **Icons:** stroke icons on a 24 grid, 1.5px stroke, `currentColor`; 18px on the rail, 16px in nav and buttons. No emoji.
 
