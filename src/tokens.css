@@ -1,0 +1,125 @@
+/* =============================================================================
+   Aurelia design system — tokens (plain CSS, no build step needed)
+   Values are the source of truth from the Aurelia tokens.json.
+   Light by default. Dark: follows the OS unless <html data-theme="light">,
+   or forced with <html data-theme="dark">.
+============================================================================= */
+:root {
+  /* Surfaces: 000 window edge → 100 workspace → 150 sidebar/rail → 200 cards */
+  --surface-000: #ecebea;
+  --surface-100: #f5f5f4;
+  --surface-150: #f0f0ee;
+  --surface-200: #ffffff;
+  --surface-hover: #e8e7e5;
+
+  /* Lines */
+  --border-subtle: #ebeae8;
+  --border: #dcdbd8;
+
+  /* Text */
+  --ink: #1c1c1a;
+  --ink-muted: #6b6a66;
+  --ink-faint: #86847f;
+
+  /* Agent avatar — the only dark mass of the UI */
+  --agent-mark: #141413;
+  --agent-mark-ink: #ffffff;
+
+  /* Status */
+  --success: #2e7a4c;
+  --success-bg: #e6f3ea;
+  --success-line: #3f9d63;
+  --warning: #97590a;
+  --warning-bg: #fcefd9;
+  --warning-line: #d99a2b;
+  --danger: #c23f2b;
+  --danger-bg: #fbe8e4;
+  --neutral-line: #a3a19c;
+
+  /* Notification badge, window frame, focus ring */
+  --notify: #bd5a10;
+  --on-notify: #ffffff;
+  --chrome: #d6c7c6;
+  --focus: #1c1c1a;
+
+  --shadow-card: 0 1px 2px rgba(20, 20, 19, 0.04);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-000: #0f0f0e;
+    --surface-100: #161615;
+    --surface-150: #1a1a18;
+    --surface-200: #1e1e1c;
+    --surface-hover: #262624;
+    --border-subtle: #262624;
+    --border: #33322f;
+    --ink: #f1f0ed;
+    --ink-muted: #a3a19c;
+    --ink-faint: #8a8883;
+    --agent-mark: #f1f0ed;
+    --agent-mark-ink: #141413;
+    --success: #7fd69c;
+    --success-bg: #173322;
+    --success-line: #5fbf80;
+    --warning: #f2b956;
+    --warning-bg: #34270f;
+    --warning-line: #e0a540;
+    --danger: #f08470;
+    --danger-bg: #3a1a15;
+    --neutral-line: #75736e;
+    --notify: #f39a3c;
+    --on-notify: #1a1a18;
+    --chrome: #3a3232;
+    --focus: #f1f0ed;
+    --shadow-card: none;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface-000: #0f0f0e;
+  --surface-100: #161615;
+  --surface-150: #1a1a18;
+  --surface-200: #1e1e1c;
+  --surface-hover: #262624;
+  --border-subtle: #262624;
+  --border: #33322f;
+  --ink: #f1f0ed;
+  --ink-muted: #a3a19c;
+  --ink-faint: #8a8883;
+  --agent-mark: #f1f0ed;
+  --agent-mark-ink: #141413;
+  --success: #7fd69c;
+  --success-bg: #173322;
+  --success-line: #5fbf80;
+  --warning: #f2b956;
+  --warning-bg: #34270f;
+  --warning-line: #e0a540;
+  --danger: #f08470;
+  --danger-bg: #3a1a15;
+  --neutral-line: #75736e;
+  --notify: #f39a3c;
+  --on-notify: #1a1a18;
+  --chrome: #3a3232;
+  --focus: #f1f0ed;
+  --shadow-card: none;
+  color-scheme: dark;
+}

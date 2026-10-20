@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 05 · Approvals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+.q{display:flex;flex-direction:column;background:var(--surface-200);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-card)}
+.qi{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border-subtle)}
+.qi:last-child{border-bottom:0}
+.qi.on{background:var(--surface-100)}
+.diff{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.diff > div{padding:14px;border-radius:var(--radius-md);background:var(--surface-100);display:flex;flex-direction:column;gap:4px}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn on" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Approval views">
+    <h2>Approvals</h2>
+    <a class="nav on" href="./approvals.html"><span class="l">Pending</span><span class="n">6</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Approved today</span><span class="n">14</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Rejected</span><span class="n">2</span></a>
+    <div class="group">Type</div>
+    <a class="nav" href="./approvals.html"><span class="l">Emails</span><span class="n">4</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Discounts</span><span class="n">1</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Stage changes</span><span class="n">1</span></a>
+    <div class="group">Agent</div>
+    <a class="nav" href="./agents.html"><span class="l">Follow-up agent</span><span class="n">4</span></a>
+    <a class="nav" href="./agents.html"><span class="l">Pricing agent</span><span class="n">1</span></a>
+    <a class="nav" href="./agents.html"><span class="l">Forecast agent</span><span class="n">1</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / <b>Approvals</b></div>
+      <div class="tools"><button class="btn" type="button">Approve all emails</button></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <h1 class="h1" style="font-size: 26px; line-height: 32px;">6 actions wait for you</h1>
+      <div class="meta">Oldest 3 h ago · agents pause these deals until you decide</div>
+    </div>
+
+    <div class="split">
+      <section class="q narrow" aria-label="Pending actions" style="flex-basis: 380px;">
+        <a class="qi on" href="./approvals.html"><span class="pill wait" style="align-self: flex-start;"><i></i>Discount</span><div class="grow"><div class="ell" style="font-weight: 500;">Brightwater Foods, 12% off</div><div class="muted ell" style="font-size: 12px;">Pricing agent · $184,000 deal</div></div><span class="mono faint" style="font-size: 12px;">3 h</span></a>
+        <a class="qi" href="./approvals.html"><span class="pill tag" style="align-self: flex-start;">Email</span><div class="grow"><div class="ell" style="font-weight: 500;">Reply to Dana Ruiz</div><div class="muted ell" style="font-size: 12px;">Follow-up agent · Halden Logistics</div></div><span class="mono faint" style="font-size: 12px;">2 h</span></a>
+        <a class="qi" href="./approvals.html"><span class="pill tag" style="align-self: flex-start;">Email</span><div class="grow"><div class="ell" style="font-weight: 500;">Recap after discovery call</div><div class="muted ell" style="font-size: 12px;">Follow-up agent · Kestrel Energy</div></div><span class="mono faint" style="font-size: 12px;">2 h</span></a>
+        <a class="qi" href="./approvals.html"><span class="pill tag" style="align-self: flex-start;">Stage</span><div class="grow"><div class="ell" style="font-weight: 500;">Move Tessaro to Closed lost</div><div class="muted ell" style="font-size: 12px;">Forecast agent · no reply 21 days</div></div><span class="mono faint" style="font-size: 12px;">1 h</span></a>
+        <a class="qi" href="./approvals.html"><span class="pill tag" style="align-self: flex-start;">Email</span><div class="grow"><div class="ell" style="font-weight: 500;">Samples follow-up</div><div class="muted ell" style="font-size: 12px;">Follow-up agent · Avalon Freight</div></div><span class="mono faint" style="font-size: 12px;">48 m</span></a>
+        <a class="qi" href="./approvals.html"><span class="pill tag" style="align-self: flex-start;">Email</span><div class="grow"><div class="ell" style="font-weight: 500;">Intro to procurement</div><div class="muted ell" style="font-size: 12px;">Follow-up agent · Pinecrest Hotels</div></div><span class="mono faint" style="font-size: 12px;">12 m</span></a>
+      </section>
+
+      <section class="card wide" aria-label="Selected action">
+        <div class="row" style="align-items: flex-start;"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="5.5" width="3" height="3" rx="1"></rect><rect x="10" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div class="grow"><div class="h3">Pricing agent wants to apply a 12% discount</div><div class="muted" style="font-size: 13px;"><a href="./deal.html">Cold chain packaging, 2027</a> · Brightwater Foods · Proposal</div></div><span class="pill wait"><i></i>Waiting approval</span></div>
+
+        <div class="diff">
+          <div><span class="muted" style="font-size: 12px;">Current</span><span class="mono" style="font-size: 22px; line-height: 28px; font-weight: 500;">$184,000</span><span class="mono muted" style="font-size: 12px;">Margin 31.0%</span></div>
+          <div><span class="muted" style="font-size: 12px;">After discount</span><span class="mono" style="font-size: 22px; line-height: 28px; font-weight: 500;">$161,920</span><span class="mono" style="font-size: 12px; color: var(--danger);">Margin 21.6% · below 25% floor</span></div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div class="h3" style="font-size: 14px;">Why the agent suggests it</div>
+          <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: var(--ink-muted); font-size: 13px;">
+            <li>Brightwater shared a competing quote 9% lower on 2026-10-17.</li>
+            <li>Similar deals with a 10–12% discount closed 2.3× more often in 2026.</li>
+            <li>Volume grows to 18 sites in 2027, which brings margin back to 27%.</li>
+          </ul>
+        </div>
+
+        <div class="rule"></div>
+        <label for="note" class="muted" style="font-size: 13px;">Note to the agent (optional)</label>
+        <textarea id="note" rows="3" placeholder="For example: offer 8% now and 12% from 20 sites" style="font: inherit; font-size: 13px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface-200); color: var(--ink); resize: vertical;"></textarea>
+        <div class="tools"><button class="btn primary" type="button">Approve 12%</button><button class="btn" type="button">Counter with 8%</button><button class="btn" type="button">Reject</button></div>
+      </section>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

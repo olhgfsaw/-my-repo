@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 02 · Pipeline board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+.board{display:grid;grid-template-columns:repeat(5,minmax(232px,1fr));gap:16px;overflow-x:auto;padding-bottom:4px}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.col-head{display:flex;align-items:center;gap:8px;padding:0 4px}
+.deal{display:flex;flex-direction:column;gap:10px;background:var(--surface-200);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);padding:14px}
+.deal:hover{border-color:var(--border)}
+.deal .amt{font:500 15px/20px var(--font-mono)}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn on" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Deal views">
+    <h2>Deals</h2>
+    <a class="nav" href="./deals.html"><span class="l">All deals</span><span class="n">142</span></a>
+    <a class="nav on" href="./pipeline.html"><span class="l">My pipeline</span><span class="n">38</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Needs approval</span><span class="n">6</span></a>
+    <div class="group">Owner</div>
+    <a class="nav" href="./pipeline.html"><span class="av" style="width: 20px; height: 20px; font-size: 9px;">OK</span><span class="l">Olha K.</span><span class="n">38</span></a>
+    <a class="nav" href="./pipeline.html"><span class="av" style="width: 20px; height: 20px; font-size: 9px;">MB</span><span class="l">Marco Bianchi</span><span class="n">41</span></a>
+    <a class="nav" href="./pipeline.html"><span class="av" style="width: 20px; height: 20px; font-size: 9px;">AS</span><span class="l">Aisha Said</span><span class="n">35</span></a>
+    <a class="nav" href="./pipeline.html"><span class="av" style="width: 20px; height: 20px; font-size: 9px;">TN</span><span class="l">Tom Novak</span><span class="n">28</span></a>
+    <div class="group">Close date</div>
+    <a class="nav" href="./pipeline.html"><span class="l">This month</span><span class="n">14</span></a>
+    <a class="nav" href="./pipeline.html"><span class="l">This quarter</span><span class="n">31</span></a>
+    <a class="nav" href="./pipeline.html"><span class="l">Overdue</span><span class="n">4</span></a>
+    <a class="nav muted" href="./pipeline.html"><span class="l">+ Add view</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / Deals / <b>My pipeline</b></div>
+      <div class="tools">
+        <label class="search" for="q"><input id="q" type="search" placeholder="Filter deals"><span class="kbd">/</span></label>
+        <a class="btn primary" href="./deal.html">New deal</a>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h1 class="h1" style="font-size: 26px; line-height: 32px;">My pipeline</h1>
+        <div class="meta">38 open deals · $1.42M · weighted $612K</div>
+      </div>
+      <div class="tools"><span class="chip on">Board</span><a class="chip" href="./deals.html">List</a><span class="chip">Close: Q4 2026</span><span class="chip">Segment: All</span></div>
+    </div>
+
+    <div class="board">
+      <section class="col" aria-label="Qualified">
+        <div class="col-head"><span class="dot" style="background: var(--neutral-line);"></span><b style="font-weight: 600;">Qualified</b><span class="mono faint" style="font-size: 12px;">9</span><span class="grow"></span><span class="mono muted" style="font-size: 12px;">$318K</span></div>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Pinecrest Hotels</div><div style="font-weight: 500;">Housekeeping supplies, 14 sites</div><div class="row"><span class="amt grow">$86,000</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><div class="row muted" style="font-size: 12px;"><span class="mono grow">Close 2026-12-12</span><span>Score 72</span></div></a>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Lumen Grid</div><div style="font-weight: 500;">Field kits pilot</div><div class="row"><span class="amt grow">$24,500</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><div class="row muted" style="font-size: 12px;"><span class="mono grow">Close 2026-11-28</span><span>Score 64</span></div></a>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Orbis Packaging</div><div style="font-weight: 500;">Annual consumables</div><div class="row"><span class="amt grow">$112,000</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><div class="row muted" style="font-size: 12px;"><span class="mono grow">Close 2027-01-15</span><span>Score 81</span></div></a>
+      </section>
+
+      <section class="col" aria-label="Discovery">
+        <div class="col-head"><span class="dot" style="background: var(--neutral-line);"></span><b style="font-weight: 600;">Discovery</b><span class="mono faint" style="font-size: 12px;">11</span><span class="grow"></span><span class="mono muted" style="font-size: 12px;">$402K</span></div>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Kestrel Energy</div><div style="font-weight: 500;">Safety equipment renewal</div><div class="row"><span class="amt grow">$148,000</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><span class="pill wait" style="align-self: flex-start;"><i></i>Follow-up drafted</span></a>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Avalon Freight</div><div style="font-weight: 500;">Warehouse labels and film</div><div class="row"><span class="amt grow">$57,200</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><div class="row muted" style="font-size: 12px;"><span class="mono grow">Close 2026-12-05</span><span>Score 58</span></div></a>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Northfield Retail</div><div style="font-weight: 500;">Store opening bundle</div><div class="row"><span class="amt grow">$39,800</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><div class="row muted" style="font-size: 12px;"><span class="mono grow">Close 2026-11-20</span><span>Score 69</span></div></a>
+      </section>
+
+      <section class="col" aria-label="Proposal">
+        <div class="col-head"><span class="dot" style="background: var(--ink-muted);"></span><b style="font-weight: 600;">Proposal</b><span class="mono faint" style="font-size: 12px;">8</span><span class="grow"></span><span class="mono muted" style="font-size: 12px;">$365K</span></div>
+        <a class="deal" href="./deal.html" style="border-color: var(--border);"><div class="muted" style="font-size: 12px;">Brightwater Foods</div><div style="font-weight: 500;">Cold chain packaging, 2027</div><div class="row"><span class="amt grow">$184,000</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><span class="pill wait" style="align-self: flex-start;"><i></i>Discount needs approval</span></a>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Corvel Medical</div><div style="font-weight: 500;">Sterile supply contract</div><div class="row"><span class="amt grow">$96,500</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><div class="row muted" style="font-size: 12px;"><span class="mono grow">Close 2026-11-30</span><span>Score 77</span></div></a>
+      </section>
+
+      <section class="col" aria-label="Negotiation">
+        <div class="col-head"><span class="dot" style="background: var(--ink);"></span><b style="font-weight: 600;">Negotiation</b><span class="mono faint" style="font-size: 12px;">5</span><span class="grow"></span><span class="mono muted" style="font-size: 12px;">$221K</span></div>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Halden Logistics</div><div style="font-weight: 500;">Fleet consumables, 3 years</div><div class="row"><span class="amt grow">$128,400</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><div class="row muted" style="font-size: 12px;"><span class="mono grow">Close 2026-10-31</span><span>Score 88</span></div></a>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Tessaro Labs</div><div style="font-weight: 500;">Lab disposables MSA</div><div class="row"><span class="amt grow">$92,600</span><span class="av" style="width: 22px; height: 22px; font-size: 9px;">OK</span></div><span class="pill bad" style="align-self: flex-start;"><i></i>Close date passed</span></a>
+      </section>
+
+      <section class="col" aria-label="Closed won">
+        <div class="col-head"><span class="dot" style="background: var(--success-line);"></span><b style="font-weight: 600;">Closed won</b><span class="mono faint" style="font-size: 12px;">5</span><span class="grow"></span><span class="mono muted" style="font-size: 12px;">$214K</span></div>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Pinecrest Hotels</div><div style="font-weight: 500;">Linen pilot, 2 sites</div><div class="row"><span class="amt grow">$18,000</span><span class="pill ok"><i></i>Won</span></div><div class="mono muted" style="font-size: 12px;">2026-10-14</div></a>
+        <a class="deal" href="./deal.html"><div class="muted" style="font-size: 12px;">Kestrel Energy</div><div style="font-weight: 500;">Q4 PPE top-up</div><div class="row"><span class="amt grow">$64,300</span><span class="pill ok"><i></i>Won</span></div><div class="mono muted" style="font-size: 12px;">2026-10-09</div></a>
+      </section>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

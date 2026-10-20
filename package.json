@@ -1,0 +1,24 @@
+{
+  "name": "aurelia-design-system",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Aurelia design system: 10 CRM screens, UI kit, tokens and Vue 3 components with a local Vite viewer.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "sync:vue": "node scripts/sync-vue-styles.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "tailwindcss": "^4.1.11",
+    "vite": "^6.3.5"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.39.0"
+  }
+}

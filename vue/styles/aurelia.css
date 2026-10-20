@@ -1,0 +1,198 @@
+/* Aurelia design system — Tailwind CSS v4 theme for the Vue components.
+   Import once in your app entry:  @import "./aurelia/styles/aurelia.css";
+   Generated from src/tokens.css + src/theme.css by `npm run sync:vue` — do not edit by hand. */
+@import "tailwindcss";
+
+/* ---- tokens (src/tokens.css) ---- */
+:root {
+  /* Surfaces: 000 window edge → 100 workspace → 150 sidebar/rail → 200 cards */
+  --surface-000: #ecebea;
+  --surface-100: #f5f5f4;
+  --surface-150: #f0f0ee;
+  --surface-200: #ffffff;
+  --surface-hover: #e8e7e5;
+
+  /* Lines */
+  --border-subtle: #ebeae8;
+  --border: #dcdbd8;
+
+  /* Text */
+  --ink: #1c1c1a;
+  --ink-muted: #6b6a66;
+  --ink-faint: #86847f;
+
+  /* Agent avatar — the only dark mass of the UI */
+  --agent-mark: #141413;
+  --agent-mark-ink: #ffffff;
+
+  /* Status */
+  --success: #2e7a4c;
+  --success-bg: #e6f3ea;
+  --success-line: #3f9d63;
+  --warning: #97590a;
+  --warning-bg: #fcefd9;
+  --warning-line: #d99a2b;
+  --danger: #c23f2b;
+  --danger-bg: #fbe8e4;
+  --neutral-line: #a3a19c;
+
+  /* Notification badge, window frame, focus ring */
+  --notify: #bd5a10;
+  --on-notify: #ffffff;
+  --chrome: #d6c7c6;
+  --focus: #1c1c1a;
+
+  --shadow-card: 0 1px 2px rgba(20, 20, 19, 0.04);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-000: #0f0f0e;
+    --surface-100: #161615;
+    --surface-150: #1a1a18;
+    --surface-200: #1e1e1c;
+    --surface-hover: #262624;
+    --border-subtle: #262624;
+    --border: #33322f;
+    --ink: #f1f0ed;
+    --ink-muted: #a3a19c;
+    --ink-faint: #8a8883;
+    --agent-mark: #f1f0ed;
+    --agent-mark-ink: #141413;
+    --success: #7fd69c;
+    --success-bg: #173322;
+    --success-line: #5fbf80;
+    --warning: #f2b956;
+    --warning-bg: #34270f;
+    --warning-line: #e0a540;
+    --danger: #f08470;
+    --danger-bg: #3a1a15;
+    --neutral-line: #75736e;
+    --notify: #f39a3c;
+    --on-notify: #1a1a18;
+    --chrome: #3a3232;
+    --focus: #f1f0ed;
+    --shadow-card: none;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface-000: #0f0f0e;
+  --surface-100: #161615;
+  --surface-150: #1a1a18;
+  --surface-200: #1e1e1c;
+  --surface-hover: #262624;
+  --border-subtle: #262624;
+  --border: #33322f;
+  --ink: #f1f0ed;
+  --ink-muted: #a3a19c;
+  --ink-faint: #8a8883;
+  --agent-mark: #f1f0ed;
+  --agent-mark-ink: #141413;
+  --success: #7fd69c;
+  --success-bg: #173322;
+  --success-line: #5fbf80;
+  --warning: #f2b956;
+  --warning-bg: #34270f;
+  --warning-line: #e0a540;
+  --danger: #f08470;
+  --danger-bg: #3a1a15;
+  --neutral-line: #75736e;
+  --notify: #f39a3c;
+  --on-notify: #1a1a18;
+  --chrome: #3a3232;
+  --focus: #f1f0ed;
+  --shadow-card: none;
+  color-scheme: dark;
+}
+
+/* ---- Tailwind theme (src/theme.css) ---- */
+/* `dark:` only for the rare case a token does not cover it. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  /* Only Aurelia colours: the default Tailwind palette is switched off. */
+  --color-*: initial;
+
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+
+  /* Type styles (size / line height / weight / tracking) */
+  --text-display: 32px;
+  --text-display--line-height: 40px;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.02em;
+  --text-title: 15px;
+  --text-title--line-height: 20px;
+  --text-title--font-weight: 600;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-meta: 13px;
+  --text-meta--line-height: 18px;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-label--font-weight: 500;
+  --text-stat: 24px;
+  --text-stat--line-height: 30px;
+  --text-stat--font-weight: 500;
+  --text-stat--letter-spacing: -0.01em;
+  --text-count: 12px;
+  --text-count--line-height: 16px;
+  --text-delta: 11px;
+  --text-delta--line-height: 14px;
+  --text-badge: 10px;
+  --text-badge--line-height: 16px;
+  --text-badge--font-weight: 600;
+}
+
+@theme inline {
+  --color-surface-000: var(--surface-000);
+  --color-surface-100: var(--surface-100);
+  --color-surface-150: var(--surface-150);
+  --color-surface-200: var(--surface-200);
+  --color-surface-hover: var(--surface-hover);
+  --color-border-subtle: var(--border-subtle);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-agent-mark: var(--agent-mark);
+  --color-agent-mark-ink: var(--agent-mark-ink);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-success-line: var(--success-line);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-line: var(--warning-line);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-neutral-line: var(--neutral-line);
+  --color-notify: var(--notify);
+  --color-on-notify: var(--on-notify);
+  --color-chrome: var(--chrome);
+  --color-focus: var(--focus);
+}

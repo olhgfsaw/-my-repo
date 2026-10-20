@@ -1,0 +1,83 @@
+/* =============================================================================
+   Aurelia design system — Tailwind CSS v4 theme.
+   Use in an app (after tokens.css):
+     @import "tailwindcss";
+     @import "./tokens.css";
+     @import "./theme.css";
+   Colours are mapped with `@theme inline`, so every utility reads the live CSS
+   variable and switches with the theme on its own (no `dark:` needed):
+     bg-surface-100  bg-surface-200  text-ink  text-ink-muted  border-border
+     bg-success-bg text-success  rounded-xl  rounded-pill  font-mono  text-stat …
+============================================================================= */
+
+/* `dark:` only for the rare case a token does not cover it. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  /* Only Aurelia colours: the default Tailwind palette is switched off. */
+  --color-*: initial;
+
+  --font-sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 999px;
+
+  /* Type styles (size / line height / weight / tracking) */
+  --text-display: 32px;
+  --text-display--line-height: 40px;
+  --text-display--font-weight: 600;
+  --text-display--letter-spacing: -0.02em;
+  --text-title: 15px;
+  --text-title--line-height: 20px;
+  --text-title--font-weight: 600;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-meta: 13px;
+  --text-meta--line-height: 18px;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-label--font-weight: 500;
+  --text-stat: 24px;
+  --text-stat--line-height: 30px;
+  --text-stat--font-weight: 500;
+  --text-stat--letter-spacing: -0.01em;
+  --text-count: 12px;
+  --text-count--line-height: 16px;
+  --text-delta: 11px;
+  --text-delta--line-height: 14px;
+  --text-badge: 10px;
+  --text-badge--line-height: 16px;
+  --text-badge--font-weight: 600;
+}
+
+@theme inline {
+  --color-surface-000: var(--surface-000);
+  --color-surface-100: var(--surface-100);
+  --color-surface-150: var(--surface-150);
+  --color-surface-200: var(--surface-200);
+  --color-surface-hover: var(--surface-hover);
+  --color-border-subtle: var(--border-subtle);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-agent-mark: var(--agent-mark);
+  --color-agent-mark-ink: var(--agent-mark-ink);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-success-line: var(--success-line);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-line: var(--warning-line);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-neutral-line: var(--neutral-line);
+  --color-notify: var(--notify);
+  --color-on-notify: var(--on-notify);
+  --color-chrome: var(--chrome);
+  --color-focus: var(--focus);
+}

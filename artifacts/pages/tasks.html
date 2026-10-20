@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 08 · Tasks and calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+.week{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:12px;overflow-x:auto}
+.day{display:flex;flex-direction:column;gap:8px;min-width:0}
+.dh{display:flex;align-items:baseline;gap:6px;padding:0 4px 6px;border-bottom:1px solid var(--border-subtle)}
+.dh b{font:500 20px/24px var(--font-mono)}
+.day.today .dh b{display:inline-grid;place-items:center;min-width:30px;height:30px;border-radius:var(--radius-pill);background:var(--ink);color:var(--surface-200);font-size:15px}
+.ev{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:var(--radius-md);background:var(--surface-200);border:1px solid var(--border-subtle);font-size:13px}
+.ev .t{font:400 12px/16px var(--font-mono);color:var(--ink-muted)}
+.ev.call{background:var(--surface-hover);border-color:transparent}
+.ev.from-agent{background:var(--warning-bg);border-color:transparent;color:var(--warning)}
+.ev.from-agent .t{color:var(--warning)}
+.task{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border-subtle)}
+.task:last-child{border-bottom:0}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn on" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Task views">
+    <h2>Tasks</h2>
+    <a class="nav on" href="./tasks.html"><span class="l">This week</span><span class="n">23</span></a>
+    <a class="nav" href="./tasks.html"><span class="l">Today</span><span class="n">5</span></a>
+    <a class="nav" href="./tasks.html"><span class="l">Overdue</span><span class="n">3</span></a>
+    <a class="nav" href="./tasks.html"><span class="l">Done</span><span class="n">48</span></a>
+    <div class="group">Type</div>
+    <a class="nav" href="./tasks.html"><span class="l">Calls</span><span class="n">9</span></a>
+    <a class="nav" href="./tasks.html"><span class="l">Meetings</span><span class="n">7</span></a>
+    <a class="nav" href="./tasks.html"><span class="l">Emails</span><span class="n">4</span></a>
+    <a class="nav" href="./tasks.html"><span class="l">From agents</span><span class="n">3</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / <b>Tasks</b></div>
+      <div class="tools"><div class="seg"><span>Day</span><span class="on">Week</span><span>Month</span></div><button class="btn primary" type="button">New task</button></div>
+    </div>
+
+    <div class="sec-head">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h1 class="h1" style="font-size: 26px; line-height: 32px;">Week 43</h1>
+        <div class="meta">2026-10-19 – 2026-10-23 · 14 events · 3 overdue tasks</div>
+      </div>
+      <div class="tools"><button class="btn sm" type="button" aria-label="Previous week">←</button><button class="btn sm" type="button">Today</button><button class="btn sm" type="button" aria-label="Next week">→</button></div>
+    </div>
+
+    <section class="week" aria-label="Week calendar">
+      <div class="day"><div class="dh"><b>19</b><span class="muted">Mon</span></div>
+        <div class="ev"><span class="t">09:30–10:00</span>Pipeline review</div>
+        <div class="ev call"><span class="t">11:00 · call</span>Avalon Freight, samples</div>
+        <div class="ev"><span class="t">15:00–16:00</span>Pinecrest discovery</div>
+      </div>
+      <div class="day today"><div class="dh"><b>20</b><span class="muted">Tue · today</span></div>
+        <div class="ev call"><span class="t">10:30 · call</span>Dana Ruiz, Halden</div>
+        <div class="ev from-agent"><span class="t">12:00 · needs approval</span>Proposal to Brightwater</div>
+        <div class="ev" style="border-color: var(--ink);"><span class="t">14:00–15:00</span>Demo, Corvel Medical</div>
+        <div class="ev"><span class="t">16:30–17:00</span>QBR prep, Kestrel</div>
+      </div>
+      <div class="day"><div class="dh"><b>21</b><span class="muted">Wed</span></div>
+        <div class="ev"><span class="t">10:00–11:00</span>Team forecast call</div>
+        <div class="ev call"><span class="t">13:30 · call</span>Nora Amin, Northfield</div>
+      </div>
+      <div class="day"><div class="dh"><b>22</b><span class="muted">Thu</span></div>
+        <div class="ev"><span class="t">09:00–10:30</span>Halden contract sign-off</div>
+        <div class="ev call"><span class="t">11:30 · call</span>Lumen Grid intro</div>
+        <div class="ev"><span class="t">14:00–15:00</span>Kestrel QBR</div>
+      </div>
+      <div class="day"><div class="dh"><b>23</b><span class="muted">Fri</span></div>
+        <div class="ev"><span class="t">10:00–10:30</span>1:1 with Marco</div>
+        <div class="ev call"><span class="t">12:00 · call</span>Orbis budget owner</div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Open tasks">
+      <div class="sec-head"><h2 class="h3">Open tasks</h2><span class="meta">sorted by due date</span></div>
+      <div>
+        <label class="task"><input type="checkbox" style="margin-top: 2px;"><div class="grow"><div>Chase Tessaro on MSA redlines</div><div class="muted" style="font-size: 12px;">Tessaro Labs · Lab disposables MSA</div></div><span class="pill bad"><i></i>Due 10-17</span></label>
+        <label class="task"><input type="checkbox" style="margin-top: 2px;"><div class="grow"><div>Send updated price list to Avalon</div><div class="muted" style="font-size: 12px;">Avalon Freight · Warehouse labels and film</div></div><span class="pill bad"><i></i>Due 10-18</span></label>
+        <label class="task"><input type="checkbox" style="margin-top: 2px;"><div class="grow"><div>Approve follow-up email to Dana Ruiz</div><div class="muted" style="font-size: 12px;">Created by Follow-up agent</div></div><span class="pill wait"><i></i>Today</span></label>
+        <label class="task"><input type="checkbox" style="margin-top: 2px;"><div class="grow"><div>Book sign-off meeting with Lena Soto</div><div class="muted" style="font-size: 12px;">Halden Logistics · Fleet consumables</div></div><span class="mono muted" style="font-size: 12px;">10-21</span></label>
+        <label class="task"><input type="checkbox" style="margin-top: 2px;"><div class="grow"><div>Find budget owner at Orbis</div><div class="muted" style="font-size: 12px;">Orbis Packaging · Annual consumables</div></div><span class="mono muted" style="font-size: 12px;">10-23</span></label>
+      </div>
+    </section>
+  </main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 09 · Forecast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+.chart text{font:400 11px var(--font-mono);fill:var(--ink-faint)}
+.chart .gridline{stroke:var(--border-subtle);stroke-width:1}
+.chart .quota{stroke:var(--ink-muted);stroke-width:1;stroke-dasharray:4 4}
+.chart .act{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.chart .proj{fill:none;stroke:var(--ink-faint);stroke-width:2;stroke-dasharray:2 5;stroke-linecap:round}
+.chart .area{fill:var(--surface-hover)}
+.chart .pt{fill:var(--ink)}
+.chart .lab{fill:var(--ink-muted)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--ink-muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:16px;height:0;border-top:2px solid var(--ink)}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn on" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Reports">
+    <h2>Reports</h2>
+    <a class="nav on" href="./forecast.html"><span class="l">Q4 forecast</span></a>
+    <a class="nav" href="./forecast.html"><span class="l">Win/loss analysis</span></a>
+    <a class="nav" href="./forecast.html"><span class="l">Pipeline coverage</span></a>
+    <a class="nav" href="./forecast.html"><span class="l">Activity by rep</span></a>
+    <div class="group">Period</div>
+    <a class="nav" href="./forecast.html"><span class="l">Q3 2026</span></a>
+    <a class="nav on" href="./forecast.html"><span class="l">Q4 2026</span></a>
+    <a class="nav" href="./forecast.html"><span class="l">FY 2026</span></a>
+    <a class="nav muted" href="./forecast.html"><span class="l">+ New report</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / Reports / <b>Q4 forecast</b></div>
+      <div class="tools"><button class="btn" type="button">Share</button><button class="btn primary" type="button">Submit forecast</button></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <h1 class="h1" style="font-size: 26px; line-height: 32px;">Q4 2026 forecast</h1>
+      <div class="meta">Week 43 of 52 · updated by Forecast agent at 06:00</div>
+    </div>
+
+    <section class="g4" aria-label="Forecast numbers">
+      <div class="stat"><div class="lab">Quota</div><div class="val">$2.40M</div></div>
+      <div class="stat"><div class="lab">Closed won</div><div class="val">$1.12M<span class="up">+$360K wk</span></div></div>
+      <div class="stat"><div class="lab">Commit</div><div class="val">$520K</div></div>
+      <div class="stat"><div class="lab">Forecast</div><div class="val">$1.94M<span class="down">81% of quota</span></div></div>
+    </section>
+
+    <section class="card" aria-label="Cumulative bookings">
+      <div class="sec-head"><h2 class="h3">Cumulative bookings</h2><div class="legend"><span><i></i>Closed</span><span><i style="border-top-style: dotted; border-top-color: var(--ink-faint);"></i>Projected</span><span><i style="border-top-style: dashed; border-top-width: 1px; border-top-color: var(--ink-muted);"></i>Quota</span></div></div>
+      <div style="overflow-x: auto;">
+      <svg class="chart" viewBox="0 0 820 230" width="100%" style="min-width: 560px; display: block;" role="img" aria-label="Closed bookings grew from 180K in week 40 to 1.12M in week 43; projected 1.94M by week 52 against a 2.40M quota">
+        <line class="gridline" x1="48" y1="200" x2="800" y2="200"></line>
+        <line class="gridline" x1="48" y1="127.6" x2="800" y2="127.6"></line>
+        <line class="gridline" x1="48" y1="55.2" x2="800" y2="55.2"></line>
+        <text x="40" y="204" text-anchor="end">0</text>
+        <text x="40" y="131.6" text-anchor="end">1.0M</text>
+        <text x="40" y="59.2" text-anchor="end">2.0M</text>
+        <line class="quota" x1="60" y1="27.2" x2="780" y2="27.2"></line>
+        <text class="lab" x="780" y="20" text-anchor="end">Quota 2.40M</text>
+        <path class="area" d="M60 200 L60 187 L120 169.8 L180 145.3 L240 119.4 L240 200 Z"></path>
+        <path class="act" d="M60 187 L120 169.8 L180 145.3 L240 119.4"></path>
+        <path class="proj" d="M240 119.4 L780 60.3"></path>
+        <circle class="pt" cx="240" cy="119.4" r="4"></circle>
+        <text class="lab" x="250" y="112">1.12M</text>
+        <circle cx="780" cy="60.3" r="4" style="fill: var(--surface-200); stroke: var(--ink-faint); stroke-width: 2;"></circle>
+        <text class="lab" x="772" y="82" text-anchor="end">1.94M</text>
+        <text x="60" y="222" text-anchor="middle">W40</text>
+        <text x="240" y="222" text-anchor="middle">W43</text>
+        <text x="420" y="222" text-anchor="middle">W46</text>
+        <text x="600" y="222" text-anchor="middle">W49</text>
+        <text x="780" y="222" text-anchor="middle">W52</text>
+      </svg>
+      </div>
+    </section>
+
+    <div class="split">
+      <section class="tbl-wrap wide" aria-label="By rep">
+        <table style="min-width: 600px;">
+          <thead><tr><th>Rep</th><th class="num">Quota</th><th class="num">Closed</th><th class="num">Commit</th><th style="width: 200px;">Attainment</th></tr></thead>
+          <tbody>
+            <tr><td><div class="row"><span class="av">OK</span>Olha K.</div></td><td class="num">$600K</td><td class="num">$312K</td><td class="num">$168K</td><td><div class="row"><div class="bar grow"><span style="width: 52%;"></span></div><span class="mono" style="font-size: 12px; width: 36px; text-align: right;">52%</span></div></td></tr>
+            <tr><td><div class="row"><span class="av">AS</span>Aisha Said</div></td><td class="num">$600K</td><td class="num">$306K</td><td class="num">$110K</td><td><div class="row"><div class="bar grow"><span style="width: 51%;"></span></div><span class="mono" style="font-size: 12px; width: 36px; text-align: right;">51%</span></div></td></tr>
+            <tr><td><div class="row"><span class="av">MB</span>Marco Bianchi</div></td><td class="num">$650K</td><td class="num">$284K</td><td class="num">$142K</td><td><div class="row"><div class="bar grow"><span style="width: 44%;"></span></div><span class="mono" style="font-size: 12px; width: 36px; text-align: right;">44%</span></div></td></tr>
+            <tr><td><div class="row"><span class="av">TN</span>Tom Novak</div></td><td class="num">$550K</td><td class="num">$218K</td><td class="num">$100K</td><td><div class="row"><div class="bar grow"><span style="width: 40%; background: var(--warning-line);"></span></div><span class="mono" style="font-size: 12px; width: 36px; text-align: right;">40%</span></div></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card narrow" aria-label="Deals at risk">
+        <div class="sec-head"><h2 class="h3">At risk</h2><span class="pill bad"><i></i>$277K</span></div>
+        <a class="row" href="./deal.html"><span class="grow"><span style="display: block;">Lab disposables MSA</span><span class="muted" style="font-size: 12px;">Tessaro · no reply 21 days</span></span><span class="mono">$92.6K</span></a>
+        <a class="row" href="./deal.html"><span class="grow"><span style="display: block;">Cold chain packaging</span><span class="muted" style="font-size: 12px;">Brightwater · competitor 9% lower</span></span><span class="mono">$184K</span></a>
+        <div class="muted" style="font-size: 12px;">Flagged by Forecast agent</div>
+      </section>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

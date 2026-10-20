@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 07 · Company account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+.kv{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px 12px;font-size:13px;margin:0}
+.kv dt{color:var(--ink-muted)}.kv dd{margin:0}
+.bars{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;align-items:end;height:160px;border-bottom:1px solid var(--border-subtle)}
+.bars span{display:block;border-radius:6px 6px 0 0;background:var(--neutral-line)}
+.bars span.cur{background:var(--ink)}
+.xl{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;font:400 11px/14px var(--font-mono);color:var(--ink-faint);text-align:center}
+.mini{display:flex;flex-direction:column}
+.mini a{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-subtle)}
+.mini a:last-child{border-bottom:0}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn on" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Company views">
+    <h2>Companies</h2>
+    <a class="nav" href="./company.html"><span class="l">All companies</span><span class="n">386</span></a>
+    <a class="nav" href="./company.html"><span class="l">Customers</span><span class="n">124</span></a>
+    <a class="nav" href="./company.html"><span class="l">Prospects</span><span class="n">262</span></a>
+    <div class="group">Health</div>
+    <a class="nav" href="./company.html"><span class="dot" style="background: var(--success-line);"></span><span class="l">Healthy</span><span class="n">88</span></a>
+    <a class="nav" href="./company.html"><span class="dot" style="background: var(--warning-line);"></span><span class="l">Watch</span><span class="n">29</span></a>
+    <a class="nav" href="./company.html"><span class="dot" style="background: var(--danger);"></span><span class="l">At risk</span><span class="n">7</span></a>
+    <div class="group">My accounts</div>
+    <a class="nav on" href="./company.html"><span class="l">Halden Logistics</span></a>
+    <a class="nav" href="./company.html"><span class="l">Brightwater Foods</span></a>
+    <a class="nav" href="./company.html"><span class="l">Pinecrest Hotels</span></a>
+    <a class="nav" href="./company.html"><span class="l">Orbis Packaging</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / Companies / <b>Halden Logistics</b></div>
+      <div class="tools"><button class="btn" type="button">Add note</button><a class="btn primary" href="./deal.html">New deal</a></div>
+    </div>
+
+    <header class="row" style="gap: 16px; align-items: center; flex-wrap: wrap;">
+      <span style="width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--agent-mark); color: var(--agent-mark-ink); display: grid; place-items: center; font: 600 20px/1 var(--font-sans);">HL</span>
+      <div class="grow" style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="row" style="gap: 10px; flex-wrap: wrap;"><h1 class="h1" style="font-size: 28px; line-height: 34px;">Halden Logistics</h1><span class="pill ok"><i></i>Customer · Healthy</span></div>
+        <div class="meta">Freight and fleet services · Rotterdam · 1,850 employees · since 2023-02-14</div>
+      </div>
+    </header>
+
+    <section class="g4" aria-label="Account numbers">
+      <div class="stat"><div class="lab">Lifetime revenue</div><div class="val">$412K</div></div>
+      <div class="stat"><div class="lab">Open pipeline</div><div class="val">$128K</div></div>
+      <div class="stat"><div class="lab">Health score</div><div class="val">82<span class="up">+5</span></div></div>
+      <div class="stat"><div class="lab">Next renewal</div><div class="val" style="font-size: 20px;">2027-03-01</div></div>
+    </section>
+
+    <div class="split">
+      <div class="wide" style="display: flex; flex-direction: column; gap: 16px;">
+        <section class="card" aria-label="Revenue by quarter">
+          <div class="sec-head"><h2 class="h3">Revenue by quarter</h2><span class="meta">USD, thousands</span></div>
+          <div class="bars" role="img" aria-label="Quarterly revenue from 15K in Q1 2025 to 71K in Q4 2026">
+            <span style="height: 21%;"></span><span style="height: 34%;"></span><span style="height: 45%;"></span><span style="height: 52%;"></span><span style="height: 61%;"></span><span style="height: 70%;"></span><span style="height: 86%;"></span><span class="cur" style="height: 100%;"></span>
+          </div>
+          <div class="xl"><span>Q1 25</span><span>Q2 25</span><span>Q3 25</span><span>Q4 25</span><span>Q1 26</span><span>Q2 26</span><span>Q3 26</span><span>Q4 26</span></div>
+        </section>
+        <section class="card" aria-label="Deals">
+          <div class="sec-head"><h2 class="h3">Deals</h2><span class="meta">1 open · 6 won · 1 lost</span></div>
+          <div class="mini">
+            <a href="./deal.html"><span class="grow" style="font-weight: 500;">Fleet consumables, 3 years</span><span class="pill tag">Negotiation</span><span class="mono" style="width: 96px; text-align: right;">$128,400</span></a>
+            <a href="./deal.html"><span class="grow">Winter kit top-up</span><span class="pill ok"><i></i>Won</span><span class="mono" style="width: 96px; text-align: right;">$48,000</span></a>
+            <a href="./deal.html"><span class="grow">Depot cleaning program</span><span class="pill ok"><i></i>Won</span><span class="mono" style="width: 96px; text-align: right;">$92,500</span></a>
+            <a href="./deal.html"><span class="grow">Driver PPE, Benelux</span><span class="pill bad"><i></i>Lost</span><span class="mono" style="width: 96px; text-align: right;">$36,000</span></a>
+          </div>
+        </section>
+      </div>
+
+      <div class="narrow" style="display: flex; flex-direction: column; gap: 16px;">
+        <section class="card" aria-label="About">
+          <h2 class="h3">About</h2>
+          <dl class="kv">
+            <dt>Website</dt><dd>halden.example</dd>
+            <dt>Industry</dt><dd>Logistics</dd>
+            <dt>Annual revenue</dt><dd class="mono">$240M</dd>
+            <dt>Sites</dt><dd>14 depots, 3 countries</dd>
+            <dt>Account owner</dt><dd>Olha K.</dd>
+          </dl>
+          <div class="muted" style="font-size: 12px;">Enriched by Enrichment agent · 2026-10-19</div>
+        </section>
+        <section class="card" aria-label="Signals">
+          <h2 class="h3">Signals</h2>
+          <div class="row" style="align-items: flex-start;"><span class="dot" style="background: var(--success-line); margin-top: 6px;"></span><span class="grow" style="font-size: 13px;">Opened quote v3 four times in 3 days</span></div>
+          <div class="row" style="align-items: flex-start;"><span class="dot" style="background: var(--success-line); margin-top: 6px;"></span><span class="grow" style="font-size: 13px;">Hiring 40 drivers, new depot in Antwerp</span></div>
+          <div class="row" style="align-items: flex-start;"><span class="dot" style="background: var(--warning-line); margin-top: 6px;"></span><span class="grow" style="font-size: 13px;">Talking to Fleetwise Supply on gloves</span></div>
+        </section>
+        <section class="card" aria-label="People">
+          <div class="sec-head"><h2 class="h3">People</h2><a class="btn sm" href="./contacts.html">All 9</a></div>
+          <div class="row"><span class="av">DR</span><div class="grow"><div>Dana Ruiz</div><div class="muted" style="font-size: 12px;">Head of Fleet Ops</div></div></div>
+          <div class="row"><span class="av">LS</span><div class="grow"><div>Lena Soto</div><div class="muted" style="font-size: 12px;">CFO</div></div></div>
+          <div class="row"><span class="av">PK</span><div class="grow"><div>Pavel Kim</div><div class="muted" style="font-size: 12px;">Procurement manager</div></div></div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

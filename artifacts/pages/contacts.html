@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 06 · Contacts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+tbody tr:hover td{background:var(--surface-100)}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn on" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Contact views">
+    <h2>Contacts</h2>
+    <a class="nav on" href="./contacts.html"><span class="l">All contacts</span><span class="n">1,284</span></a>
+    <a class="nav" href="./contacts.html"><span class="l">My contacts</span><span class="n">212</span></a>
+    <a class="nav" href="./contacts.html"><span class="l">Added this week</span><span class="n">18</span></a>
+    <div class="group">Role</div>
+    <a class="nav" href="./contacts.html"><span class="l">Decision makers</span><span class="n">96</span></a>
+    <a class="nav" href="./contacts.html"><span class="l">Champions</span><span class="n">41</span></a>
+    <a class="nav" href="./contacts.html"><span class="l">Procurement</span><span class="n">77</span></a>
+    <div class="group">Lists</div>
+    <a class="nav" href="./contacts.html"><span class="l">Q4 renewals</span><span class="n">54</span></a>
+    <a class="nav" href="./contacts.html"><span class="l">LogiExpo 2026 leads</span><span class="n">120</span></a>
+    <a class="nav muted" href="./contacts.html"><span class="l">+ Add list</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / <b>Contacts</b></div>
+      <div class="tools">
+        <label class="search" for="q"><input id="q" type="search" placeholder="Name, company or email"><span class="kbd">/</span></label>
+        <button class="btn" type="button">Import</button>
+        <button class="btn primary" type="button">New contact</button>
+      </div>
+    </div>
+
+    <section class="g4" aria-label="Contact health">
+      <div class="stat"><div class="lab">Contacts</div><div class="val">1,284<span class="up">+18</span></div></div>
+      <div class="stat"><div class="lab">Engaged, 30 days</div><div class="val">412</div></div>
+      <div class="stat"><div class="lab">No owner</div><div class="val">27</div></div>
+      <div class="stat"><div class="lab">Data complete</div><div class="val">91%<span class="up">+4</span></div></div>
+    </section>
+
+    <div class="sec-head">
+      <h1 class="h3">All contacts</h1>
+      <div class="tools"><span class="chip">Owner: Anyone</span><span class="chip">Engagement: Any</span><span class="chip">+ Filter</span></div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width: 40px;"><input type="checkbox" aria-label="Select all"></th><th>Name</th><th>Company</th><th>Email</th><th>Engagement</th><th>Last activity</th><th class="num">Open deals</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">DR</span><div><div style="font-weight: 500;">Dana Ruiz</div><div class="muted" style="font-size: 12px;">Head of Fleet Ops</div></div></div></td><td><a href="./company.html">Halden Logistics</a></td><td class="mono muted" style="font-size: 13px;">dana.ruiz@halden.example</td><td><span class="pill ok"><i></i>Engaged</span></td><td class="mono muted" style="font-size: 13px;">Call · 10-18</td><td class="num">1</td><td><span class="av">OK</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">MO</span><div><div style="font-weight: 500;">Mira Osei</div><div class="muted" style="font-size: 12px;">VP Operations</div></div></div></td><td>Brightwater Foods</td><td class="mono muted" style="font-size: 13px;">m.osei@brightwater.example</td><td><span class="pill ok"><i></i>Engaged</span></td><td class="mono muted" style="font-size: 13px;">Email · 10-19</td><td class="num">1</td><td><span class="av">OK</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">JH</span><div><div style="font-weight: 500;">Jonas Hart</div><div class="muted" style="font-size: 12px;">Purchasing lead</div></div></div></td><td>Corvel Medical</td><td class="mono muted" style="font-size: 13px;">jhart@corvel.example</td><td><span class="pill ok"><i></i>Engaged</span></td><td class="mono muted" style="font-size: 13px;">Meeting · 10-20</td><td class="num">1</td><td><span class="av">TN</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">RV</span><div><div style="font-weight: 500;">Rita Vance</div><div class="muted" style="font-size: 12px;">Lab manager</div></div></div></td><td>Tessaro Labs</td><td class="mono muted" style="font-size: 13px;">rita.v@tessaro.example</td><td><span class="pill bad"><i></i>No reply 21 d</span></td><td class="mono muted" style="font-size: 13px;">Email · 09-29</td><td class="num">1</td><td><span class="av">MB</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">SB</span><div><div style="font-weight: 500;">Sam Brandt</div><div class="muted" style="font-size: 12px;">HSE director</div></div></div></td><td>Kestrel Energy</td><td class="mono muted" style="font-size: 13px;">s.brandt@kestrel.example</td><td><span class="pill wait"><i></i>Cooling</span></td><td class="mono muted" style="font-size: 13px;">Call · 10-06</td><td class="num">2</td><td><span class="av">AS</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">YT</span><div><div style="font-weight: 500;">Yuki Tanaka</div><div class="muted" style="font-size: 12px;">Facilities manager</div></div></div></td><td>Pinecrest Hotels</td><td class="mono muted" style="font-size: 13px;">ytanaka@pinecrest.example</td><td><span class="pill idle"><i></i>New</span></td><td class="mono muted" style="font-size: 13px;">Form · 10-19</td><td class="num">1</td><td><span class="av">OK</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">BL</span><div><div style="font-weight: 500;">Ben Lowe</div><div class="muted" style="font-size: 12px;">Warehouse director</div></div></div></td><td>Avalon Freight</td><td class="mono muted" style="font-size: 13px;">ben.lowe@avalon.example</td><td><span class="pill wait"><i></i>Cooling</span></td><td class="mono muted" style="font-size: 13px;">Email · 10-08</td><td class="num">1</td><td><span class="av">MB</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">NA</span><div><div style="font-weight: 500;">Nora Amin</div><div class="muted" style="font-size: 12px;">Store ops manager</div></div></div></td><td>Northfield Retail</td><td class="mono muted" style="font-size: 13px;">n.amin@northfield.example</td><td><span class="pill ok"><i></i>Engaged</span></td><td class="mono muted" style="font-size: 13px;">Meeting · 10-15</td><td class="num">1</td><td><span class="av">AS</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select contact"></td><td><div class="row"><span class="av">GF</span><div><div style="font-weight: 500;">Greta Falk</div><div class="muted" style="font-size: 12px;">CFO</div></div></div></td><td>Orbis Packaging</td><td class="mono muted" style="font-size: 13px;">gfalk@orbis.example</td><td><span class="pill idle"><i></i>New</span></td><td class="mono muted" style="font-size: 13px;">—</td><td class="num">1</td><td><span class="av">TN</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — UI Kit — all components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+.kit{max-width:1440px;margin:0 auto;padding:clamp(16px,4vw,48px);display:flex;flex-direction:column;gap:40px;background:var(--surface-100);min-height:100vh}
+.kit > section{display:flex;flex-direction:column;gap:16px}
+.kit h2.h2{margin:0;font:600 20px/28px var(--font-sans);letter-spacing:-0.01em}
+.eyebrow{font:500 12px/16px var(--font-mono);color:var(--ink-muted);text-transform:uppercase;letter-spacing:.08em}
+.note{font-size:13px;line-height:18px;color:var(--ink-muted);max-width:760px}
+.code{font:400 12px/16px var(--font-mono);color:var(--ink-muted)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.sw{display:flex;flex-direction:column;gap:4px;padding:10px;background:var(--surface-200);border:1px solid var(--border-subtle);border-radius:var(--radius-lg)}
+.sw-chip{height:48px;border-radius:var(--radius-md);border:1px solid var(--border-subtle);margin-bottom:4px}
+.sw-name{font-size:12px;font-weight:500}
+.sw-hex{font-size:11px;color:var(--ink-faint)}
+.sw-use{font-size:12px;line-height:16px;color:var(--ink-muted)}
+.type-row{display:grid;grid-template-columns:240px minmax(0,1fr);gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--border-subtle)}
+.type-row:last-child{border-bottom:0}
+.type-meta{display:flex;flex-direction:column;gap:2px;font-size:12px}
+.rad{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.rad-box{width:72px;height:56px;background:var(--surface-200);border:1px solid var(--border)}
+.demo{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.mini-shell{display:flex;flex-wrap:wrap;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;background:var(--surface-150);max-width:560px}
+@media (max-width:760px){.type-row{grid-template-columns:minmax(0,1fr)}}
+  </style>
+</head>
+<body>
+<div class="kit">
+
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <span class="eyebrow">Aurelia design system</span>
+    <h1 class="h1">Components</h1>
+    <p class="note" style="margin: 0;">Tokens, type and every building block of the Aurelia CRM screens, with their states. Classes come from <span class="mono">src/components.css</span>; Vue versions live in <span class="mono">vue/</span>.</p>
+  </header>
+
+  <section aria-labelledby="k-colors">
+    <h2 class="h2" id="k-colors">Colours</h2>
+    <p class="note" style="margin: 0;">Semantic tokens only. Each swatch shows light · dark; the chip follows the current theme.</p>
+    <div class="swatches">
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--surface-000);"></div>
+        <div class="sw-name mono">surface-000</div>
+        <div class="sw-hex mono">#ecebea · #0f0f0e</div>
+        <div class="sw-use">App shell behind every panel; window edge.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--surface-100);"></div>
+        <div class="sw-name mono">surface-100</div>
+        <div class="sw-hex mono">#f5f5f4 · #161615</div>
+        <div class="sw-use">Workspace background (main column).</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--surface-150);"></div>
+        <div class="sw-name mono">surface-150</div>
+        <div class="sw-hex mono">#f0f0ee · #1a1a18</div>
+        <div class="sw-use">Sidebar and icon rail.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--surface-200);"></div>
+        <div class="sw-name mono">surface-200</div>
+        <div class="sw-hex mono">#ffffff · #1e1e1c</div>
+        <div class="sw-use">Cards: KPI, agents, tables. Always on surface-100.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--surface-hover);"></div>
+        <div class="sw-name mono">surface-hover</div>
+        <div class="sw-hex mono">#e8e7e5 · #262624</div>
+        <div class="sw-use">Hover and active nav item on surface-150.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--border-subtle);"></div>
+        <div class="sw-name mono">border-subtle</div>
+        <div class="sw-hex mono">#ebeae8 · #262624</div>
+        <div class="sw-use">Card outline, divider inside a card.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--border);"></div>
+        <div class="sw-name mono">border</div>
+        <div class="sw-hex mono">#dcdbd8 · #33322f</div>
+        <div class="sw-use">Control outline, panel divider.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--ink);"></div>
+        <div class="sw-name mono">ink</div>
+        <div class="sw-hex mono">#1c1c1a · #f1f0ed</div>
+        <div class="sw-use">Body text, KPI values, names. 15.6:1 on surface-100.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--ink-muted);"></div>
+        <div class="sw-name mono">ink-muted</div>
+        <div class="sw-hex mono">#6b6a66 · #a3a19c</div>
+        <div class="sw-use">Secondary text: labels, roles, meta. ≥4.7:1 everywhere.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--ink-faint);"></div>
+        <div class="sw-name mono">ink-faint</div>
+        <div class="sw-hex mono">#86847f · #8a8883</div>
+        <div class="sw-use">Nav counters, group headings, rail icons. 3.3:1 — duplicate info only.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--agent-mark);"></div>
+        <div class="sw-name mono">agent-mark</div>
+        <div class="sw-hex mono">#141413 · #f1f0ed</div>
+        <div class="sw-use">Agent avatar background — the only dark mass of the UI.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--agent-mark-ink);"></div>
+        <div class="sw-name mono">agent-mark-ink</div>
+        <div class="sw-hex mono">#ffffff · #141413</div>
+        <div class="sw-use">Pixel glyph on agent-mark.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--success);"></div>
+        <div class="sw-name mono">success</div>
+        <div class="sw-hex mono">#2e7a4c · #7fd69c</div>
+        <div class="sw-use">Running, positive delta. 5.2:1 on surface-200.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--success-bg);"></div>
+        <div class="sw-name mono">success-bg</div>
+        <div class="sw-hex mono">#e6f3ea · #173322</div>
+        <div class="sw-use">Running pill background.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--success-line);"></div>
+        <div class="sw-name mono">success-line</div>
+        <div class="sw-hex mono">#3f9d63 · #5fbf80</div>
+        <div class="sw-use">Sparkline and Running dot (not text).</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--warning);"></div>
+        <div class="sw-name mono">warning</div>
+        <div class="sw-hex mono">#97590a · #f2b956</div>
+        <div class="sw-use">“Waiting approval” text. 4.9:1 on warning-bg.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--warning-bg);"></div>
+        <div class="sw-name mono">warning-bg</div>
+        <div class="sw-hex mono">#fcefd9 · #34270f</div>
+        <div class="sw-use">Waiting pill background.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--warning-line);"></div>
+        <div class="sw-name mono">warning-line</div>
+        <div class="sw-hex mono">#d99a2b · #e0a540</div>
+        <div class="sw-use">Sparkline and waiting dot (not text).</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--danger);"></div>
+        <div class="sw-name mono">danger</div>
+        <div class="sw-hex mono">#c23f2b · #f08470</div>
+        <div class="sw-use">Negative delta, agent error. 5.2:1 on surface-200.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--danger-bg);"></div>
+        <div class="sw-name mono">danger-bg</div>
+        <div class="sw-hex mono">#fbe8e4 · #3a1a15</div>
+        <div class="sw-use">Error pill background.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--neutral-line);"></div>
+        <div class="sw-name mono">neutral-line</div>
+        <div class="sw-hex mono">#a3a19c · #75736e</div>
+        <div class="sw-use">Idle: status dot and sparkline.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--notify);"></div>
+        <div class="sw-name mono">notify</div>
+        <div class="sw-hex mono">#bd5a10 · #f39a3c</div>
+        <div class="sw-use">Counter badge on the icon rail (pending approvals).</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--on-notify);"></div>
+        <div class="sw-name mono">on-notify</div>
+        <div class="sw-hex mono">#ffffff · #1a1a18</div>
+        <div class="sw-use">Number on notify.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--chrome);"></div>
+        <div class="sw-name mono">chrome</div>
+        <div class="sw-hex mono">#d6c7c6 · #3a3232</div>
+        <div class="sw-use">Dusty-pink window frame; shell and cover only, never in content.</div>
+      </div>
+      <div class="sw">
+        <div class="sw-chip" style="background: var(--focus);"></div>
+        <div class="sw-name mono">focus</div>
+        <div class="sw-hex mono">#1c1c1a · #f1f0ed</div>
+        <div class="sw-use">2px focus ring with 2px offset.</div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="k-type">
+    <h2 class="h2" id="k-type">Typography</h2>
+    <p class="note" style="margin: 0;">Geist for text, Geist Mono for every number, date and counter (tabular figures).</p>
+    <div class="card" style="gap: 0; padding-top: 8px; padding-bottom: 8px;">
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">greeting</span><span class="faint">Display · 32px/40px · 600</span></div>
+          <div style="font: 600 32px/40px var(--font-sans); letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">Good evening, Olha</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">title</span><span class="faint">Text · 15px/20px · 600</span></div>
+          <div style="font: 600 15px/20px var(--font-sans); font-variant-numeric: tabular-nums;">Triage agent</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">body</span><span class="faint">Text · 14px/20px · 400</span></div>
+          <div style="font: 400 14px/20px var(--font-sans); font-variant-numeric: tabular-nums;">Scoring 2 new arrivals</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">meta</span><span class="faint">Text · 13px/18px · 400</span></div>
+          <div style="font: 400 13px/18px var(--font-sans); font-variant-numeric: tabular-nums;">ED intake and acuity</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">label</span><span class="faint">Text · 12px/16px · 500</span></div>
+          <div style="font: 500 12px/16px var(--font-sans); font-variant-numeric: tabular-nums;">Running</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">stat</span><span class="faint">Data · 24px/30px · 500</span></div>
+          <div style="font: 500 24px/30px var(--font-mono); letter-spacing: -0.01em; font-variant-numeric: tabular-nums;">43 min</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">data</span><span class="faint">Data · 13px/18px · 400</span></div>
+          <div style="font: 400 13px/18px var(--font-mono); font-variant-numeric: tabular-nums;">Day 07:00-19:00 · 2026-10-17</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><span class="mono">count</span><span class="faint">Data · 12px/16px · 400</span></div>
+          <div style="font: 400 12px/16px var(--font-mono); font-variant-numeric: tabular-nums;">31</div>
+        </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="k-space">
+    <h2 class="h2" id="k-space">Spacing and radius</h2>
+    <div class="g2">
+      <div class="card" style="gap: 12px;">
+        <div class="row"><span class="mono" style="width: 72px;">space-1</span><span class="mono faint" style="width: 40px;">4px</span><span style="display: block; height: 12px; width: 4px; border-radius: 3px; background: var(--ink);"></span><span class="muted ell" style="font-size: 13px;">Status dot ↔ text, delta ↔ value</span></div>
+        <div class="row"><span class="mono" style="width: 72px;">space-2</span><span class="mono faint" style="width: 40px;">8px</span><span style="display: block; height: 12px; width: 8px; border-radius: 3px; background: var(--ink);"></span><span class="muted ell" style="font-size: 13px;">Icon ↔ label in nav</span></div>
+        <div class="row"><span class="mono" style="width: 72px;">space-3</span><span class="mono faint" style="width: 40px;">12px</span><span style="display: block; height: 12px; width: 12px; border-radius: 3px; background: var(--ink);"></span><span class="muted ell" style="font-size: 13px;">Avatar ↔ name, card inner steps</span></div>
+        <div class="row"><span class="mono" style="width: 72px;">space-4</span><span class="mono faint" style="width: 40px;">16px</span><span style="display: block; height: 12px; width: 16px; border-radius: 3px; background: var(--ink);"></span><span class="muted ell" style="font-size: 13px;">Grid gap between cards, KPI padding</span></div>
+        <div class="row"><span class="mono" style="width: 72px;">space-5</span><span class="mono faint" style="width: 40px;">20px</span><span style="display: block; height: 12px; width: 20px; border-radius: 3px; background: var(--ink);"></span><span class="muted ell" style="font-size: 13px;">Agent card padding</span></div>
+        <div class="row"><span class="mono" style="width: 72px;">space-6</span><span class="mono faint" style="width: 40px;">24px</span><span style="display: block; height: 12px; width: 24px; border-radius: 3px; background: var(--ink);"></span><span class="muted ell" style="font-size: 13px;">Between page sections</span></div>
+        <div class="row"><span class="mono" style="width: 72px;">space-8</span><span class="mono faint" style="width: 40px;">32px</span><span style="display: block; height: 12px; width: 32px; border-radius: 3px; background: var(--ink);"></span><span class="muted ell" style="font-size: 13px;">Workspace padding</span></div>
+      </div>
+      <div class="card" style="flex-direction: row; flex-wrap: wrap; gap: 24px;">
+        <div class="rad"><div class="rad-box" style="border-radius: 6px;"></div><span class="mono">radius-sm</span><span class="mono faint">6px</span><span class="muted" style="font-size: 12px;">Nav item</span></div>
+        <div class="rad"><div class="rad-box" style="border-radius: 10px;"></div><span class="mono">radius-md</span><span class="mono faint">10px</span><span class="muted" style="font-size: 12px;">Controls, rail button</span></div>
+        <div class="rad"><div class="rad-box" style="border-radius: 14px;"></div><span class="mono">radius-lg</span><span class="mono faint">14px</span><span class="muted" style="font-size: 12px;">KPI card</span></div>
+        <div class="rad"><div class="rad-box" style="border-radius: 18px;"></div><span class="mono">radius-xl</span><span class="mono faint">18px</span><span class="muted" style="font-size: 12px;">Cards, shell panels</span></div>
+        <div class="rad"><div class="rad-box" style="border-radius: 999px;"></div><span class="mono">radius-pill</span><span class="mono faint">999px</span><span class="muted" style="font-size: 12px;">Pills, badges, avatars</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="k-controls">
+    <h2 class="h2" id="k-controls">Buttons and controls</h2>
+    <div class="card">
+      <div class="demo">
+        <button class="btn primary" type="button">New deal</button>
+        <button class="btn" type="button">Export</button>
+        <button class="btn sm" type="button">All tasks</button>
+        <button class="btn primary sm" type="button">Approve</button>
+        <button class="btn sm" type="button" aria-label="Previous week">←</button>
+      </div>
+      <div class="code">.btn · .btn.primary · .btn.sm — one primary action per view</div>
+      <div class="rule"></div>
+      <div class="demo">
+        <span class="chip on">All 142</span><span class="chip">Mine 38</span><span class="chip">Enterprise</span>
+        <div class="seg"><span>Day</span><span class="on">Week</span><span>Month</span></div>
+        <label class="search" for="kit-q"><input id="kit-q" type="search" placeholder="Search deals, contacts"><span class="kbd">⌘K</span></label>
+        <label class="row" style="width: auto;"><input type="checkbox" checked><span>Checkbox</span></label>
+      </div>
+      <div class="code">.chip / .chip.on · .seg &gt; span.on · .search + .kbd · input[type=checkbox]</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="k-status">
+    <h2 class="h2" id="k-status">Status</h2>
+    <div class="card">
+      <div class="demo">
+        <span class="pill ok"><i></i>Running</span>
+        <span class="pill wait"><i></i>Waiting approval</span>
+        <span class="pill bad"><i></i>Error</span>
+        <span class="pill idle"><i></i>Idle</span>
+        <span class="pill tag">Enterprise</span>
+      </div>
+      <div class="code">.pill.ok · .pill.wait · .pill.bad · .pill.idle · .pill.tag — status is always colour + word</div>
+      <div class="rule"></div>
+      <div class="demo">
+        <span class="mono">$4.82M</span><span class="up">+6.4%</span>
+        <span class="mono">31.4%</span><span class="down">-1.2</span>
+        <span class="faint" style="font-size: 13px;">Deltas: .up (good) · .down (bad). “Good” can be a decrease, e.g. sales cycle −3 d.</span>
+      </div>
+      <div class="rule"></div>
+      <div class="demo" style="flex-direction: column; align-items: stretch; gap: 10px; max-width: 420px;">
+        <div class="row"><span style="width: 96px;">Qualified</span><div class="bar grow"><span style="width: 92%; background: var(--neutral-line);"></span></div><span class="mono" style="width: 48px; text-align: right;">92%</span></div>
+        <div class="row"><span style="width: 96px;">Proposal</span><div class="bar grow"><span style="width: 58%; background: var(--ink-muted);"></span></div><span class="mono" style="width: 48px; text-align: right;">58%</span></div>
+        <div class="row"><span style="width: 96px;">Negotiation</span><div class="bar grow"><span style="width: 48%;"></span></div><span class="mono" style="width: 48px; text-align: right;">48%</span></div>
+      </div>
+      <div class="code">.bar &gt; span (width = value)</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="k-cards">
+    <h2 class="h2" id="k-cards">Cards</h2>
+    <div class="g4">
+      <div class="stat"><div class="lab">Open pipeline</div><div class="val">$4.82M<span class="up">+6.4%</span></div></div>
+      <div class="stat"><div class="lab">Won this month</div><div class="val">$612K<span class="up">+12%</span></div></div>
+      <div class="stat"><div class="lab">Win rate, 90 days</div><div class="val">31.4%<span class="down">-1.2</span></div></div>
+      <div class="stat"><div class="lab">Avg sales cycle</div><div class="val">46 d<span class="up">-3</span></div></div>
+    </div>
+    <div class="code">.g4 &gt; .stat (.lab, .val, .up/.down) — KPI row</div>
+    <div class="g2">
+      <article class="card">
+        <div class="row" style="align-items: flex-start;"><span class="au-avatar" style="width: 32px; height: 32px;" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32"><rect x="7.11" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="21.33" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="7.11" y="14.22" width="3.56" height="3.56" rx="0.89"></rect><rect x="21.33" y="14.22" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="14.22" width="3.56" height="3.56" rx="0.89"></rect></svg></span><div class="grow"><div class="h3 ell">Lead scoring agent</div><div class="muted ell" style="font-size: 13px;">Scores inbound and fit</div></div><span class="pill ok"><i></i>Running</span></div>
+        <div>Scoring 5 new inbound leads</div>
+        <div class="rule" style="margin-top: 8px;"></div>
+        <div class="row" style="justify-content: space-between; align-items: flex-end;"><div class="muted" style="font-size: 13px;"><div>Act autonomously</div><div>Success <b class="mono" style="color: var(--ink); font-weight: 500;">96.8%</b> · <b class="mono" style="color: var(--ink); font-weight: 500;">41</b> today</div></div><svg class="au-spark au-spark-success" width="64" height="22" viewBox="0 0 64 22" role="img" aria-label="Activity trend for Lead scoring agent"><path d="M0.0 20.5 L8.0 15.8 L16.0 18.1 L24.0 11.0 L32.0 13.4 L40.0 8.6 L48.0 11.0 L56.0 6.2 L64.0 1.5"></path></svg></div>
+      </article>
+      <section class="card" aria-label="Card with header">
+        <div class="sec-head"><h3 class="h3">Today</h3><button class="btn sm" type="button">All tasks</button></div>
+        <label class="row"><input type="checkbox"><span class="grow">Call Dana Ruiz, Halden Logistics</span><span class="mono faint" style="font-size: 12px;">10:30</span></label>
+        <label class="row"><input type="checkbox" checked><span class="grow faint" style="text-decoration: line-through;">Review Tessaro MSA redlines</span><span class="mono faint" style="font-size: 12px;">09:00</span></label>
+      </section>
+    </div>
+    <div class="code">Agent card: .card + avatar + .h3 + .pill + .rule + sparkline · Card: .card &gt; .sec-head (.h3 + .btn.sm)</div>
+  </section>
+
+  <section aria-labelledby="k-nav">
+    <h2 class="h2" id="k-nav">Navigation</h2>
+    <div class="mini-shell">
+      <nav class="rail" aria-label="Sections (example)">
+        <div class="logo" aria-hidden="true"><span></span></div>
+        <a class="rail-btn on" href="#k-nav" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+        <a class="rail-btn" href="#k-nav" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+        <a class="rail-btn" href="#k-nav" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+        <a class="rail-btn" href="#k-nav" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+      </nav>
+      <aside class="side" aria-label="Views (example)" style="flex-basis: 260px;">
+        <h2>Deals</h2>
+        <a class="nav on" href="#k-nav"><span class="l">All deals</span><span class="n">142</span></a>
+        <a class="nav" href="#k-nav"><span class="l">Needs approval</span><span class="n">6</span></a>
+        <div class="group">Stage</div>
+        <a class="nav" href="#k-nav"><span class="dot" style="background: var(--neutral-line);"></span><span class="l">Qualified</span><span class="n">34</span></a>
+        <a class="nav" href="#k-nav"><span class="dot" style="background: var(--success-line);"></span><span class="l">Closed won</span><span class="n">24</span></a>
+        <a class="nav muted" href="#k-nav"><span class="l">+ Add view</span></a>
+      </aside>
+    </div>
+    <div class="code">.rail &gt; .rail-btn(.on) + .badge · .side &gt; h2 + .nav(.on) &gt; .l + .n · .group · .dot</div>
+    <div class="card" style="gap: 12px;">
+      <div class="crumbs">Meridian Supply / <b>Home</b></div>
+      <header style="display: flex; flex-direction: column; gap: 6px;"><div class="h1">Good morning, Olha</div><div class="meta">Sales lead · Q4 2026 · Week 43 · 2026-10-20</div></header>
+    </div>
+    <div class="code">.top &gt; .crumbs + .tools · page header: .h1 + .meta (mono) — one greeting/title per screen</div>
+  </section>
+
+  <section aria-labelledby="k-table">
+    <h2 class="h2" id="k-table">Table</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th><input type="checkbox" aria-label="Select all"></th><th>Deal</th><th>Company</th><th>Stage</th><th>Owner</th><th class="num">Amount</th><th class="num">Close</th></tr></thead>
+        <tbody>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td>Fleet consumables 2027</td><td class="muted">Halden Logistics</td><td><span class="pill wait"><i></i>Negotiation</span></td><td><span class="row"><span class="av">LS</span>Lena Soto</span></td><td class="num">$184,000</td><td class="num muted">2026-10-30</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal" checked></td><td>Lab disposables MSA</td><td class="muted">Tessaro Labs</td><td><span class="pill tag">Proposal</span></td><td><span class="row"><span class="av">MK</span>Marco Kell</span></td><td class="num">$96,500</td><td class="num muted">2026-11-14</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td>Warehouse labels and film</td><td class="muted">Avalon Freight</td><td><span class="pill ok"><i></i>Closed won</span></td><td><span class="row"><span class="av">OE</span>Olha E.</span></td><td class="num">$42,300</td><td class="num muted">2026-10-12</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code">.tbl-wrap &gt; table · th/td.num for money and dates (mono, right-aligned) · .av initials</div>
+  </section>
+
+  <section aria-labelledby="k-au">
+    <h2 class="h2" id="k-au">Aurelia components (au-*)</h2>
+    <p class="note" style="margin: 0;">The markup of the design-system components. Vue versions: <span class="mono">AuStatusPill</span>, <span class="mono">AuDelta</span>, <span class="mono">AuStatCard</span>, <span class="mono">AuSparkline</span>, <span class="mono">AuAgentAvatar</span>, <span class="mono">AuAgentCard</span>, <span class="mono">AuNavItem</span>, <span class="mono">AuNavSection</span>, <span class="mono">AuRailButton</span>, <span class="mono">AuBreadcrumb</span>, <span class="mono">AuPageHeader</span>.</p>
+    <div class="card">
+      <div class="demo">
+        <span class="au-pill au-pill-running" role="status"><span class="au-pill-dot" aria-hidden="true"></span>Running</span>
+        <span class="au-pill au-pill-waiting" role="status"><span class="au-pill-dot" aria-hidden="true"></span>Waiting approval</span>
+        <span class="au-pill au-pill-error" role="status"><span class="au-pill-dot" aria-hidden="true"></span>Error</span>
+        <span class="au-pill au-pill-idle" role="status"><span class="au-pill-dot" aria-hidden="true"></span>Idle</span>
+        <span class="au-delta au-delta-good">+6.4%</span><span class="au-delta au-delta-bad">-1.2</span><span class="au-delta au-delta-flat">0</span>
+        <svg class="au-spark au-spark-success" width="64" height="22" viewBox="0 0 64 22" role="img" aria-label="Trend, success"><path d="M0.0 20.5 L8.0 15.8 L16.0 18.1 L24.0 11.0 L32.0 13.4 L40.0 8.6 L48.0 11.0 L56.0 6.2 L64.0 1.5"></path></svg><svg class="au-spark au-spark-warning" width="64" height="22" viewBox="0 0 64 22" role="img" aria-label="Trend, warning"><path d="M0.0 1.5 L8.0 6.2 L16.0 11.0 L24.0 8.6 L32.0 13.4 L40.0 11.0 L48.0 18.1 L56.0 15.8 L64.0 20.5"></path></svg><svg class="au-spark au-spark-neutral" width="64" height="22" viewBox="0 0 64 22" role="img" aria-label="Trend, idle"><path d="M0.0 20.5 L8.0 7.8 L16.0 14.2 L24.0 14.2 L32.0 1.5 L40.0 7.8 L48.0 14.2 L56.0 7.8 L64.0 14.2"></path></svg><svg class="au-spark au-spark-danger" width="64" height="22" viewBox="0 0 64 22" role="img" aria-label="Trend, danger"><path d="M0.0 20.5 L8.0 18.6 L16.0 14.8 L24.0 16.7 L32.0 11.0 L40.0 7.2 L48.0 9.1 L56.0 3.4 L64.0 1.5"></path></svg>
+        <span class="au-avatar" style="width: 32px; height: 32px;" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32"><rect x="14.22" y="14.22" width="3.56" height="3.56" rx="0.89"></rect></svg></span><span class="au-avatar" style="width: 32px; height: 32px;" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32"><rect x="7.11" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="21.33" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="14.22" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="21.33" width="3.56" height="3.56" rx="0.89"></rect></svg></span><span class="au-avatar" style="width: 40px; height: 40px;" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 40 40"><rect x="8.89" y="8.89" width="4.44" height="4.44" rx="1.11"></rect><rect x="26.67" y="8.89" width="4.44" height="4.44" rx="1.11"></rect><rect x="17.78" y="17.78" width="4.44" height="4.44" rx="1.11"></rect><rect x="8.89" y="26.67" width="4.44" height="4.44" rx="1.11"></rect><rect x="26.67" y="26.67" width="4.44" height="4.44" rx="1.11"></rect><rect x="17.78" y="26.67" width="4.44" height="4.44" rx="1.11"></rect></svg></span>
+      </div>
+      <div class="au-grid-4">
+        <div class="au-stat"><div class="au-stat-label">Open pipeline</div><div class="au-stat-value"><span>$4.82M</span><span class="au-delta au-delta-good">+6.4%</span></div></div>
+        <div class="au-stat"><div class="au-stat-label">Avg sales cycle</div><div class="au-stat-value"><span>46 d</span><span class="au-delta au-delta-good">-3</span></div></div>
+      </div>
+      <div class="au-grid-2">
+        <article class="au-agent" aria-label="Follow-up agent">
+          <div class="au-agent-head"><span class="au-avatar" style="width: 32px; height: 32px;" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32"><rect x="7.11" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="21.33" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="7.11" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="14.22" width="3.56" height="3.56" rx="0.89"></rect><rect x="14.22" y="21.33" width="3.56" height="3.56" rx="0.89"></rect></svg></span><div class="au-agent-id"><div class="au-agent-name">Follow-up agent</div><div class="au-agent-role">Drafts emails after calls</div></div><span class="au-pill au-pill-waiting" role="status"><span class="au-pill-dot" aria-hidden="true"></span>Waiting approval</span></div>
+          <div class="au-agent-activity">Holding 4 emails for review</div>
+          <div class="au-agent-foot"><div class="au-agent-meta"><div>Act with approval</div><div>Success <b>98.1%</b> · <b>27</b> today</div></div><svg class="au-spark au-spark-warning" width="64" height="22" viewBox="0 0 64 22" role="img" aria-label="Activity trend for Follow-up agent"><path d="M0.0 17.3 L8.0 4.7 L16.0 20.5 L24.0 7.8 L32.0 14.2 L40.0 1.5 L48.0 20.5 L56.0 7.8 L64.0 11.0"></path></svg></div>
+        </article>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <nav class="au-crumbs" aria-label="Breadcrumb"><span>Meridian Supply</span><span class="au-crumb-sep" aria-hidden="true">/</span><span>Deals</span><span class="au-crumb-sep" aria-hidden="true">/</span><span aria-current="page">Fleet consumables 2027</span></nav>
+          <header class="au-header"><h3 class="au-header-title">Fleet consumables 2027</h3><div class="au-header-meta">Halden Logistics · $184,000 · Negotiation</div></header>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); overflow: hidden; width: fit-content; max-width: 100%;">
+        <div class="au-rail">
+          <button type="button" class="au-rail-btn" aria-label="Home" title="Home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></button>
+          <button type="button" class="au-rail-btn" aria-label="Approvals, 6 pending" title="Approvals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="au-rail-badge" aria-hidden="true">6</span></button>
+          <button type="button" class="au-rail-btn" aria-label="Deals" title="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></button>
+        </div>
+        <nav class="au-nav" aria-label="Views (au-nav example)">
+          <button type="button" class="au-nav-item" aria-current="page"><span class="au-nav-label">All deals</span><span class="au-nav-count">142</span></button>
+          <button type="button" class="au-nav-item"><span class="au-nav-label">My deals</span><span class="au-nav-count">38</span></button>
+          <div class="au-nav-section">
+            <button type="button" class="au-nav-heading" aria-expanded="true"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>Segment</button>
+            <button type="button" class="au-nav-item"><span class="au-nav-label">Enterprise</span><span class="au-nav-count">18</span></button>
+            <button type="button" class="au-nav-item au-nav-add"><span class="au-nav-label">+ Add view</span></button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

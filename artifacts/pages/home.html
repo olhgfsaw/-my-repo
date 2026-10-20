@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 01 · Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn on" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Deal views">
+    <h2>Deals</h2>
+    <a class="nav" href="./deals.html"><span class="l">All deals</span><span class="n">142</span></a>
+    <a class="nav" href="./deals.html"><span class="l">My deals</span><span class="n">38</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Needs approval</span><span class="n">6</span></a>
+    <div class="group">Stage</div>
+    <a class="nav" href="./pipeline.html"><span class="dot" style="background: var(--neutral-line);"></span><span class="l">Qualified</span><span class="n">34</span></a>
+    <a class="nav" href="./pipeline.html"><span class="dot" style="background: var(--neutral-line);"></span><span class="l">Discovery</span><span class="n">27</span></a>
+    <a class="nav" href="./pipeline.html"><span class="dot" style="background: var(--ink-muted);"></span><span class="l">Proposal</span><span class="n">19</span></a>
+    <a class="nav" href="./pipeline.html"><span class="dot" style="background: var(--ink);"></span><span class="l">Negotiation</span><span class="n">11</span></a>
+    <a class="nav" href="./pipeline.html"><span class="dot" style="background: var(--success-line);"></span><span class="l">Closed won</span><span class="n">24</span></a>
+    <a class="nav" href="./pipeline.html"><span class="dot" style="background: var(--danger);"></span><span class="l">Closed lost</span><span class="n">27</span></a>
+    <div class="group">Segment</div>
+    <a class="nav" href="./deals.html"><span class="l">Enterprise</span><span class="n">18</span></a>
+    <a class="nav" href="./deals.html"><span class="l">Mid-market</span><span class="n">64</span></a>
+    <a class="nav" href="./deals.html"><span class="l">SMB</span><span class="n">60</span></a>
+    <a class="nav muted" href="./deals.html"><span class="l">+ Add view</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / <b>Home</b></div>
+      <div class="tools">
+        <label class="search" for="q"><input id="q" type="search" placeholder="Search deals, contacts"><span class="kbd">⌘K</span></label>
+        <a class="btn primary" href="./deal.html">New deal</a>
+      </div>
+    </div>
+
+    <header style="display: flex; flex-direction: column; gap: 6px;">
+      <h1 class="h1">Good morning, Olha</h1>
+      <div class="meta">Sales lead · Q4 2026 · Week 43 · 2026-10-20</div>
+    </header>
+
+    <section class="g4" aria-label="Key numbers">
+      <div class="stat"><div class="lab">Open pipeline</div><div class="val">$4.82M<span class="up">+6.4%</span></div></div>
+      <div class="stat"><div class="lab">Won this month</div><div class="val">$612K<span class="up">+12%</span></div></div>
+      <div class="stat"><div class="lab">Win rate, 90 days</div><div class="val">31.4%<span class="down">-1.2</span></div></div>
+      <div class="stat"><div class="lab">Avg sales cycle</div><div class="val">46 d<span class="up">-3</span></div></div>
+    </section>
+
+    <div class="split">
+      <section class="card wide" aria-label="Pipeline by stage">
+        <div class="sec-head"><h2 class="h3">Pipeline by stage</h2><div class="seg"><span class="on">Value</span><span>Count</span></div></div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="row"><span style="width: 104px;">Qualified</span><div class="bar grow"><span style="width: 92%; background: var(--neutral-line);"></span></div><span class="mono" style="width: 120px; text-align: right;">$1.64M · 34</span></div>
+          <div class="row"><span style="width: 104px;">Discovery</span><div class="bar grow"><span style="width: 74%; background: var(--neutral-line);"></span></div><span class="mono" style="width: 120px; text-align: right;">$1.31M · 27</span></div>
+          <div class="row"><span style="width: 104px;">Proposal</span><div class="bar grow"><span style="width: 58%; background: var(--ink-muted);"></span></div><span class="mono" style="width: 120px; text-align: right;">$1.02M · 19</span></div>
+          <div class="row"><span style="width: 104px;">Negotiation</span><div class="bar grow"><span style="width: 48%;"></span></div><span class="mono" style="width: 120px; text-align: right;">$850K · 11</span></div>
+        </div>
+        <div class="rule"></div>
+        <div class="row" style="justify-content: space-between; flex-wrap: wrap;">
+          <span class="muted" style="font-size: 13px;">Weighted forecast for Q4</span>
+          <span class="mono" style="font-weight: 500;">$1.94M of $2.40M quota · 81%</span>
+        </div>
+      </section>
+
+      <section class="card narrow" aria-label="Today">
+        <div class="sec-head"><h2 class="h3">Today</h2><a class="btn sm" href="./tasks.html">All tasks</a></div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <label class="row"><input type="checkbox"><span class="grow">Call Dana Ruiz, Halden Logistics</span><span class="mono faint" style="font-size: 12px;">10:30</span></label>
+          <label class="row"><input type="checkbox"><span class="grow">Send revised proposal to Brightwater</span><span class="mono faint" style="font-size: 12px;">12:00</span></label>
+          <label class="row"><input type="checkbox"><span class="grow">Demo for Corvel Medical</span><span class="mono faint" style="font-size: 12px;">14:00</span></label>
+          <label class="row"><input type="checkbox" checked><span class="grow faint" style="text-decoration: line-through;">Review Tessaro MSA redlines</span><span class="mono faint" style="font-size: 12px;">09:00</span></label>
+          <label class="row"><input type="checkbox"><span class="grow">QBR prep, Kestrel Energy</span><span class="mono faint" style="font-size: 12px;">16:30</span></label>
+        </div>
+      </section>
+    </div>
+
+    <section class="sec" aria-label="Agent fleet">
+      <div class="sec-head"><h2 class="h3">Agent fleet</h2><a class="btn sm" href="./agents.html">Manage</a></div>
+      <div class="g2">
+        <article class="card">
+          <div class="row" style="align-items: flex-start;"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx="1"></rect><rect x="10" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="5.5" width="3" height="3" rx="1"></rect><rect x="1" y="10" width="3" height="3" rx="1"></rect><rect x="10" y="10" width="3" height="3" rx="1"></rect></svg></span><div class="grow"><div class="h3 ell">Lead scoring agent</div><div class="muted ell" style="font-size: 13px;">Scores inbound and fit</div></div><span class="pill ok"><i></i>Running</span></div>
+          <div>Scoring 5 new inbound leads</div>
+          <div class="rule" style="margin-top: 8px;"></div>
+          <div class="row" style="justify-content: space-between; align-items: flex-end;"><div class="muted" style="font-size: 13px;"><div>Act autonomously</div><div>Success <b class="mono" style="color: var(--ink); font-weight: 500;">96.8%</b> · <b class="mono" style="color: var(--ink); font-weight: 500;">41</b> today</div></div><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--success-line);" d="M0 14 L8 6 L16 12 L24 4 L32 14 L40 8 L48 11 L56 5 L64 9"></path></svg></div>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items: flex-start;"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="5.5" y="1" width="3" height="3" rx="1"></rect><rect x="1" y="5.5" width="3" height="3" rx="1"></rect><rect x="10" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div class="grow"><div class="h3 ell">Follow-up agent</div><div class="muted ell" style="font-size: 13px;">Drafts emails after calls</div></div><span class="pill wait"><i></i>Waiting approval</span></div>
+          <div>Holding 4 emails for review</div>
+          <div class="rule" style="margin-top: 8px;"></div>
+          <div class="row" style="justify-content: space-between; align-items: flex-end;"><div class="muted" style="font-size: 13px;"><div>Act with approval</div><div>Success <b class="mono" style="color: var(--ink); font-weight: 500;">98.1%</b> · <b class="mono" style="color: var(--ink); font-weight: 500;">27</b> today</div></div><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--warning-line);" d="M0 12 L8 5 L16 16 L24 6 L32 13 L40 3 L48 15 L56 6 L64 10"></path></svg></div>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items: flex-start;"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="1" width="3" height="3" rx="1"></rect><rect x="10" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div class="grow"><div class="h3 ell">Forecast agent</div><div class="muted ell" style="font-size: 13px;">Weighted forecast and risk</div></div><span class="pill idle"><i></i>Idle</span></div>
+          <div>Next run at 18:00</div>
+          <div class="rule" style="margin-top: 8px;"></div>
+          <div class="row" style="justify-content: space-between; align-items: flex-end;"><div class="muted" style="font-size: 13px;"><div>Act autonomously</div><div>Success <b class="mono" style="color: var(--ink); font-weight: 500;">94.2%</b> · <b class="mono" style="color: var(--ink); font-weight: 500;">3</b> today</div></div><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--neutral-line);" d="M0 16 L8 6 L16 12 L24 9 L32 11 L40 10 L48 8 L56 14 L64 11"></path></svg></div>
+        </article>
+        <article class="card">
+          <div class="row" style="align-items: flex-start;"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx="1"></rect><rect x="10" y="1" width="3" height="3" rx="1"></rect><rect x="1" y="5.5" width="3" height="3" rx="1"></rect><rect x="10" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div class="grow"><div class="h3 ell">Enrichment agent</div><div class="muted ell" style="font-size: 13px;">Fills company and contact data</div></div><span class="pill ok"><i></i>Running</span></div>
+          <div>Updating 12 contact records</div>
+          <div class="rule" style="margin-top: 8px;"></div>
+          <div class="row" style="justify-content: space-between; align-items: flex-end;"><div class="muted" style="font-size: 13px;"><div>Act autonomously</div><div>Success <b class="mono" style="color: var(--ink); font-weight: 500;">99.0%</b> · <b class="mono" style="color: var(--ink); font-weight: 500;">118</b> today</div></div><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--success-line);" d="M0 10 L8 14 L16 6 L24 12 L32 5 L40 13 L48 7 L56 11 L64 4"></path></svg></div>
+        </article>
+      </div>
+    </section>
+  </main>
+</div>
+</div>
+</body>
+</html>

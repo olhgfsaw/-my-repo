@@ -1,0 +1,10 @@
+/* =============================================================================
+   Aurelia design system — the stylesheet every reference screen loads.
+   Plain CSS on purpose: no Tailwind preflight, so the screens render exactly
+   as they were designed.
+     tokens.css      colours, spacing, radius, type families, shadow (+ dark theme)
+     components.css  CRM shell classes + au-* component classes
+     theme.css       Tailwind v4 @theme mapping for apps (not loaded here)
+============================================================================= */
+@import "./tokens.css";
+@import "./components.css";

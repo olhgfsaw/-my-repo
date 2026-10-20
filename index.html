@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia — Design viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/viewer.css" />
+</head>
+<body class="h-screen overflow-hidden bg-surface-100 text-ink antialiased">
+  <div class="flex h-full flex-col md:flex-row">
+
+    <!-- Sidebar -->
+    <aside class="flex max-h-[40vh] shrink-0 flex-col border-b border-border-subtle bg-surface-150 md:max-h-none md:w-72 md:border-r md:border-b-0">
+      <div class="flex items-center gap-3 px-4 pt-5 pb-3">
+        <div class="grid size-8 flex-none place-items-center rounded-md bg-agent-mark" aria-hidden="true">
+          <span class="size-3 rounded-[3px] border-[2.5px] border-agent-mark-ink"></span>
+        </div>
+        <div class="flex min-w-0 flex-col">
+          <span class="text-title">Aurelia design system</span>
+          <span class="font-mono text-count text-ink-faint" id="count"></span>
+        </div>
+      </div>
+      <div class="px-4 pb-3">
+        <label class="vw-field">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M18 11a7 7 0 1 1-14 0 7 7 0 0 1 14 0M20 20l-3.5-3.5"/></svg>
+          <span class="sr-only">Search</span>
+          <input id="search" type="search" placeholder="Search artifacts" autocomplete="off" />
+        </label>
+      </div>
+      <div class="px-4 pb-2">
+        <button type="button" id="sidebar-canvas" class="flex w-full cursor-pointer items-center justify-between gap-2 rounded-md border border-border bg-surface-200 px-3 py-2 text-meta font-medium text-ink transition-colors hover:border-ink">
+          <span class="flex items-center gap-2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            Canvas · All screens
+          </span>
+          <span class="vw-badge">Overview</span>
+        </button>
+      </div>
+      <nav id="nav" aria-label="Artifacts" class="flex-1 overflow-y-auto px-2 pb-4"></nav>
+    </aside>
+
+    <!-- Main -->
+    <section class="flex min-w-0 flex-1 flex-col">
+      <header class="flex flex-wrap items-center gap-3 border-b border-border-subtle bg-surface-200 px-4 py-2.5">
+        <div class="mr-auto flex min-w-0 flex-col">
+          <span id="crumb" class="font-mono text-count text-ink-muted"></span>
+          <h1 id="title" class="truncate text-title"></h1>
+        </div>
+
+        <div class="vw-seg" role="group" aria-label="Viewport width">
+          <button type="button" class="vw-seg__item" data-width="375px">Mobile</button>
+          <button type="button" class="vw-seg__item" data-width="768px">Tablet</button>
+          <button type="button" class="vw-seg__item" data-width="100%">Desktop</button>
+        </div>
+
+        <div class="vw-seg" role="group" aria-label="Mode">
+          <button type="button" class="vw-seg__item" data-mode="preview">Preview</button>
+          <button type="button" class="vw-seg__item" data-mode="canvas">Canvas</button>
+          <button type="button" class="vw-seg__item" data-mode="code">Code</button>
+        </div>
+
+        <div id="canvas-zoom-group" class="vw-seg hidden" role="group" aria-label="Canvas zoom">
+          <button type="button" id="c-zoom-out" class="vw-seg__item px-2 font-semibold" title="Zoom out" aria-label="Zoom out">−</button>
+          <span id="c-zoom-val" class="flex select-none items-center px-1.5 font-mono text-count text-ink-muted">35%</span>
+          <button type="button" id="c-zoom-in" class="vw-seg__item px-2 font-semibold" title="Zoom in" aria-label="Zoom in">+</button>
+          <button type="button" id="c-zoom-fit" class="vw-seg__item">Fit</button>
+          <button type="button" id="c-zoom-100" class="vw-seg__item">100%</button>
+          <button type="button" id="c-wheel-toggle" class="vw-seg__item vw-seg__item--on" title="Mouse wheel behavior">Wheel: Zoom</button>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+          <button type="button" id="btn-comment-mode" class="vw-btn" aria-pressed="false" title="Toggle Comment Mode (Key: C)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v6M9 11h6"/></svg>
+            <span id="comment-mode-label">Comment</span>
+          </button>
+          <button type="button" id="btn-copy-comments" class="vw-btn vw-btn--primary hidden" title="Copy all comments as an AI prompt for Claude/Cursor">
+            <span>Copy for AI</span>
+            <span id="comments-badge" class="rounded-pill bg-surface-200/20 px-1.5 font-mono text-delta">0</span>
+          </button>
+          <button type="button" id="btn-clear-comments" class="vw-btn vw-btn--ghost vw-btn--danger hidden" title="Clear all comments">
+            <span>Clear</span>
+          </button>
+        </div>
+
+        <button type="button" id="theme" class="vw-btn" aria-pressed="false">
+          <span id="theme-label">Dark</span>
+        </button>
+        <button type="button" id="copy" class="vw-btn">Copy HTML</button>
+        <a id="open" class="vw-btn vw-btn--ghost" target="_blank" rel="noopener">Open ↗</a>
+      </header>
+
+      <div id="stage" class="relative flex flex-1 justify-center overflow-auto bg-surface-000 bg-[radial-gradient(var(--border)_1px,transparent_1px)] bg-[length:16px_16px] p-4">
+        <div id="frame-wrap" class="relative h-full w-full overflow-hidden rounded-lg border border-border bg-surface-200 shadow-(--shadow-card) transition-[width] duration-300">
+          <iframe id="frame" title="Artifact preview" class="h-full w-full border-0"></iframe>
+          <div id="preview-pins" class="pointer-events-none absolute inset-0 overflow-hidden"></div>
+        </div>
+        <pre id="code" class="hidden h-full w-full overflow-auto rounded-lg border border-border bg-[#141413] p-4 font-mono text-[12px] leading-5 text-[#f1f0ed]"><code></code></pre>
+        <div id="canvas-wrap" class="hidden h-full w-full cursor-grab select-none overflow-auto p-4 sm:p-8">
+          <div id="canvas-grid" class="flex flex-wrap items-start justify-center gap-8 py-4"></div>
+          <div class="pointer-events-none sticky bottom-2 flex justify-center">
+            <span id="canvas-hint-text" class="rounded-pill border border-border bg-surface-200/90 px-3 py-1 text-count text-ink-muted shadow-(--shadow-card) backdrop-blur-sm">
+              Mouse wheel or pinch to zoom · Drag to pan · Press "C" or click Comment to drop pins · Double-click screen to focus
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Pin Comment Modal -->
+  <div id="comment-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-[rgba(20,20,19,0.45)] p-4 backdrop-blur-xs">
+    <div class="flex w-full max-w-md flex-col gap-4 rounded-xl border border-border-subtle bg-surface-200 p-5 shadow-(--shadow-card)">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex min-w-0 flex-col gap-0.5">
+          <span id="cm-screen" class="text-label text-ink">Screen</span>
+          <span id="cm-element" class="truncate font-mono text-count text-ink-muted">Element</span>
+        </div>
+        <button type="button" id="cm-close" class="cursor-pointer px-1 text-lg leading-none text-ink-muted hover:text-ink" aria-label="Close">×</button>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-meta font-medium text-ink" for="cm-input">Comment / Instruction for AI or Designer</label>
+        <textarea id="cm-input" rows="3" placeholder="e.g. Make this button secondary, add a date filter…" class="w-full rounded-md border border-border bg-surface-200 p-3 text-body text-ink placeholder:text-ink-faint focus:border-ink focus:outline-hidden"></textarea>
+      </div>
+      <div class="flex items-center justify-between gap-2 pt-1">
+        <button type="button" id="cm-delete" class="vw-btn vw-btn--ghost vw-btn--danger hidden">Delete pin</button>
+        <div class="ml-auto flex items-center gap-2">
+          <button type="button" id="cm-cancel" class="vw-btn">Cancel</button>
+          <button type="button" id="cm-save" class="vw-btn vw-btn--primary">Save comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite" class="pointer-events-none fixed right-4 bottom-4 z-50 rounded-md bg-ink px-4 py-2 text-body text-surface-200 opacity-0 transition-opacity"></div>
+  <script type="module" src="/src/viewer.js"></script>
+</body>
+</html>

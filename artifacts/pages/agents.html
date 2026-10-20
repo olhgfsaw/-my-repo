@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 10 · Agent fleet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+.rule-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border-subtle);font-size:13px}
+.rule-row:last-child{border-bottom:0}
+.sw{width:34px;height:20px;border-radius:var(--radius-pill);background:var(--ink);position:relative;flex:none;border:0;cursor:pointer}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:14px;height:14px;border-radius:50%;background:var(--surface-200)}
+.sw.off{background:var(--border)}
+.sw.off::after{right:auto;left:3px}
+.log{display:flex;gap:10px;font-size:13px;padding:8px 0}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn on" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Agent views">
+    <h2>Agents</h2>
+    <a class="nav on" href="./agents.html"><span class="l">Fleet</span><span class="n">6</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Waiting for you</span><span class="n">6</span></a>
+    <a class="nav" href="./agents.html"><span class="l">Activity log</span></a>
+    <a class="nav" href="./agents.html"><span class="l">Guardrails</span></a>
+    <div class="group">Status</div>
+    <a class="nav" href="./agents.html"><span class="dot" style="background: var(--success-line);"></span><span class="l">Running</span><span class="n">3</span></a>
+    <a class="nav" href="./agents.html"><span class="dot" style="background: var(--warning-line);"></span><span class="l">Waiting approval</span><span class="n">2</span></a>
+    <a class="nav" href="./agents.html"><span class="dot" style="background: var(--neutral-line);"></span><span class="l">Idle</span><span class="n">1</span></a>
+    <a class="nav muted" href="./agents.html"><span class="l">+ Add agent</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / <b>Agent fleet</b></div>
+      <div class="tools"><button class="btn" type="button">Pause all</button><button class="btn primary" type="button">Add agent</button></div>
+    </div>
+
+    <section class="g4" aria-label="Fleet numbers">
+      <div class="stat"><div class="lab">Agent actions today</div><div class="val">208<span class="up">+14%</span></div></div>
+      <div class="stat"><div class="lab">Approved without edits</div><div class="val">94.1%</div></div>
+      <div class="stat"><div class="lab">Waiting for you</div><div class="val">6</div></div>
+      <div class="stat"><div class="lab">Rep time saved, week</div><div class="val">11.5 h</div></div>
+    </section>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Agent</th><th>Status</th><th>Autonomy</th><th class="num">Success</th><th class="num">Today</th><th>Trend</th></tr></thead>
+        <tbody>
+          <tr><td><div class="row"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx="1"></rect><rect x="10" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="5.5" width="3" height="3" rx="1"></rect><rect x="1" y="10" width="3" height="3" rx="1"></rect><rect x="10" y="10" width="3" height="3" rx="1"></rect></svg></span><div><div style="font-weight: 500;">Lead scoring agent</div><div class="muted" style="font-size: 12px;">Scores inbound and fit</div></div></div></td><td><span class="pill ok"><i></i>Running</span></td><td><div class="seg"><span>Off</span><span>Approval</span><span class="on">Autonomous</span></div></td><td class="num">96.8%</td><td class="num">41</td><td><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--success-line);" d="M0 14 L8 6 L16 12 L24 4 L32 14 L40 8 L48 11 L56 5 L64 9"></path></svg></td></tr>
+          <tr><td><div class="row"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="5.5" y="1" width="3" height="3" rx="1"></rect><rect x="1" y="5.5" width="3" height="3" rx="1"></rect><rect x="10" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div><div style="font-weight: 500;">Follow-up agent</div><div class="muted" style="font-size: 12px;">Drafts emails after calls</div></div></div></td><td><span class="pill wait"><i></i>Waiting approval</span></td><td><div class="seg"><span>Off</span><span class="on">Approval</span><span>Autonomous</span></div></td><td class="num">98.1%</td><td class="num">27</td><td><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--warning-line);" d="M0 12 L8 5 L16 16 L24 6 L32 13 L40 3 L48 15 L56 6 L64 10"></path></svg></td></tr>
+          <tr><td><div class="row"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="5.5" width="3" height="3" rx="1"></rect><rect x="10" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div><div style="font-weight: 500;">Pricing agent</div><div class="muted" style="font-size: 12px;">Discounts and quote checks</div></div></div></td><td><span class="pill wait"><i></i>Waiting approval</span></td><td><div class="seg"><span>Off</span><span class="on">Approval</span><span>Autonomous</span></div></td><td class="num">91.3%</td><td class="num">7</td><td><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--warning-line);" d="M0 16 L8 12 L16 14 L24 8 L32 12 L40 6 L48 10 L56 8 L64 12"></path></svg></td></tr>
+          <tr><td><div class="row"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx="1"></rect><rect x="10" y="1" width="3" height="3" rx="1"></rect><rect x="1" y="5.5" width="3" height="3" rx="1"></rect><rect x="10" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div><div style="font-weight: 500;">Enrichment agent</div><div class="muted" style="font-size: 12px;">Fills company and contact data</div></div></div></td><td><span class="pill ok"><i></i>Running</span></td><td><div class="seg"><span>Off</span><span>Approval</span><span class="on">Autonomous</span></div></td><td class="num">99.0%</td><td class="num">118</td><td><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--success-line);" d="M0 10 L8 14 L16 6 L24 12 L32 5 L40 13 L48 7 L56 11 L64 4"></path></svg></td></tr>
+          <tr><td><div class="row"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="5.5" width="3" height="3" rx="1"></rect><rect x="10" y="10" width="3" height="3" rx="1"></rect><rect x="10" y="1" width="3" height="3" rx="1"></rect><rect x="1" y="10" width="3" height="3" rx="1"></rect></svg></span><div><div style="font-weight: 500;">Meeting notes agent</div><div class="muted" style="font-size: 12px;">Logs calls and next steps</div></div></div></td><td><span class="pill ok"><i></i>Running</span></td><td><div class="seg"><span>Off</span><span>Approval</span><span class="on">Autonomous</span></div></td><td class="num">97.4%</td><td class="num">12</td><td><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--success-line);" d="M0 13 L8 9 L16 15 L24 7 L32 10 L40 5 L48 12 L56 8 L64 6"></path></svg></td></tr>
+          <tr><td><div class="row"><span class="agent"><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="1" width="3" height="3" rx="1"></rect><rect x="10" y="1" width="3" height="3" rx="1"></rect><rect x="5.5" y="5.5" width="3" height="3" rx="1"></rect><rect x="5.5" y="10" width="3" height="3" rx="1"></rect></svg></span><div><div style="font-weight: 500;">Forecast agent</div><div class="muted" style="font-size: 12px;">Weighted forecast and risk</div></div></div></td><td><span class="pill idle"><i></i>Idle</span></td><td><div class="seg"><span>Off</span><span>Approval</span><span class="on">Autonomous</span></div></td><td class="num">94.2%</td><td class="num">3</td><td><svg width="64" height="22" viewBox="0 0 64 22" aria-hidden="true"><path class="spark" style="stroke: var(--neutral-line);" d="M0 16 L8 6 L16 12 L24 9 L32 11 L40 10 L48 8 L56 14 L64 11"></path></svg></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="g2">
+      <section class="card" aria-label="Guardrails">
+        <div class="sec-head"><h2 class="h3">Guardrails</h2><span class="meta">apply to every agent</span></div>
+        <div>
+          <div class="rule-row"><span class="grow">Ask before any discount above <b class="mono" style="font-weight: 500;">10%</b></span><button class="sw" type="button" aria-label="Discount guardrail on" aria-pressed="true"></button></div>
+          <div class="rule-row"><span class="grow">Send emails only <b class="mono" style="font-weight: 500;">08:00–18:00</b> in the contact's time zone</span><button class="sw" type="button" aria-label="Send window on" aria-pressed="true"></button></div>
+          <div class="rule-row"><span class="grow">Ask before moving a deal to Closed lost</span><button class="sw" type="button" aria-label="Stage guardrail on" aria-pressed="true"></button></div>
+          <div class="rule-row"><span class="grow">Let agents contact C-level without approval</span><button class="sw off" type="button" aria-label="C-level contact off" aria-pressed="false"></button></div>
+        </div>
+      </section>
+      <section class="card" aria-label="Recent activity">
+        <div class="sec-head"><h2 class="h3">Recent activity</h2><a class="btn sm" href="./agents.html">Full log</a></div>
+        <div>
+          <div class="log"><span class="mono faint" style="width: 44px;">09:41</span><span class="grow"><b style="font-weight: 500;">Enrichment</b> updated 12 contacts at Pinecrest Hotels</span></div>
+          <div class="log"><span class="mono faint" style="width: 44px;">09:28</span><span class="grow"><b style="font-weight: 500;">Lead scoring</b> scored Yuki Tanaka 72, routed to Olha K.</span></div>
+          <div class="log"><span class="mono faint" style="width: 44px;">09:12</span><span class="grow"><b style="font-weight: 500;">Follow-up</b> drafted reply to Dana Ruiz, waiting for approval</span></div>
+          <div class="log"><span class="mono faint" style="width: 44px;">08:55</span><span class="grow"><b style="font-weight: 500;">Pricing</b> flagged 12% discount on Brightwater</span></div>
+          <div class="log"><span class="mono faint" style="width: 44px;">06:00</span><span class="grow"><b style="font-weight: 500;">Forecast</b> updated Q4 forecast to $1.94M</span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

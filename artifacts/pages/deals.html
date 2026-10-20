@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelia CRM — 03 · Deals list</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+tbody tr:hover td{background:var(--surface-100)}
+  </style>
+</head>
+<body>
+<div class="frame" style="font-family: var(--font-sans); color: var(--ink);">
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="logo" aria-hidden="true"><span></span></div>
+    <a class="rail-btn" href="./home.html" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"></path></svg></a>
+    <a class="rail-btn" href="./pipeline.html" aria-label="Pipeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="4" height="16" rx="1"></rect><rect x="10" y="4" width="4" height="11" rx="1"></rect><rect x="16" y="4" width="4" height="7" rx="1"></rect></svg></a>
+    <a class="rail-btn on" href="./deals.html" aria-label="Deals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h11M9 12h11M9 17h11M4 7h1M4 12h1M4 17h1"></path></svg></a>
+    <a class="rail-btn" href="./approvals.html" aria-label="Approvals, 6 pending"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m8.5 12 2.5 2.5 4.5-5"></path></svg><span class="badge" aria-hidden="true">6</span></a>
+    <a class="rail-btn" href="./contacts.html" aria-label="Contacts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.5c2 .6 3 2.6 3 5.5"></path></svg></a>
+    <a class="rail-btn" href="./company.html" aria-label="Companies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V5h10v15M14 9h6v11M3 20h18M8 9h2M8 13h2M8 17h2"></path></svg></a>
+    <a class="rail-btn" href="./tasks.html" aria-label="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg></a>
+    <a class="rail-btn" href="./forecast.html" aria-label="Forecast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16M8 16l4-5 3 3 5-6"></path></svg></a>
+    <a class="rail-btn" href="./agents.html" aria-label="Agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg></a>
+  </nav>
+
+  <aside class="side" aria-label="Deal views">
+    <h2>Deals</h2>
+    <a class="nav on" href="./deals.html"><span class="l">All deals</span><span class="n">142</span></a>
+    <a class="nav" href="./pipeline.html"><span class="l">My deals</span><span class="n">38</span></a>
+    <a class="nav" href="./approvals.html"><span class="l">Needs approval</span><span class="n">6</span></a>
+    <div class="group">Stage</div>
+    <a class="nav" href="./deals.html"><span class="dot" style="background: var(--neutral-line);"></span><span class="l">Qualified</span><span class="n">34</span></a>
+    <a class="nav" href="./deals.html"><span class="dot" style="background: var(--neutral-line);"></span><span class="l">Discovery</span><span class="n">27</span></a>
+    <a class="nav" href="./deals.html"><span class="dot" style="background: var(--ink-muted);"></span><span class="l">Proposal</span><span class="n">19</span></a>
+    <a class="nav" href="./deals.html"><span class="dot" style="background: var(--ink);"></span><span class="l">Negotiation</span><span class="n">11</span></a>
+    <a class="nav" href="./deals.html"><span class="dot" style="background: var(--success-line);"></span><span class="l">Closed won</span><span class="n">24</span></a>
+    <a class="nav" href="./deals.html"><span class="dot" style="background: var(--danger);"></span><span class="l">Closed lost</span><span class="n">27</span></a>
+    <div class="group">Segment</div>
+    <a class="nav" href="./deals.html"><span class="l">Enterprise</span><span class="n">18</span></a>
+    <a class="nav" href="./deals.html"><span class="l">Mid-market</span><span class="n">64</span></a>
+    <a class="nav" href="./deals.html"><span class="l">SMB</span><span class="n">60</span></a>
+    <a class="nav muted" href="./deals.html"><span class="l">+ Add view</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div class="crumbs">Meridian Supply / <b>Deals</b></div>
+      <div class="tools">
+        <label class="search" for="q"><input id="q" type="search" placeholder="Search 142 deals"><span class="kbd">/</span></label>
+        <button class="btn" type="button">Export CSV</button>
+        <a class="btn primary" href="./deal.html">New deal</a>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h1 class="h1" style="font-size: 26px; line-height: 32px;">All deals</h1>
+        <div class="meta">142 deals · open $4.82M · sorted by close date</div>
+      </div>
+      <div class="tools"><a class="chip" href="./pipeline.html">Board</a><span class="chip on">List</span><span class="chip">Owner: Anyone</span><span class="chip">Stage: Open</span><span class="chip">+ Filter</span></div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width: 40px;"><input type="checkbox" aria-label="Select all"></th><th>Deal</th><th>Company</th><th>Stage</th><th class="num">Amount</th><th class="num">Prob.</th><th>Close date</th><th>Owner</th><th>Next step</th></tr></thead>
+        <tbody>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Fleet consumables, 3 years</a></td><td class="muted">Halden Logistics</td><td><span class="pill tag">Negotiation</span></td><td class="num">$128,400</td><td class="num">80%</td><td class="mono">2026-10-31</td><td><span class="av">OK</span></td><td class="muted">Final pricing call</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Lab disposables MSA</a></td><td class="muted">Tessaro Labs</td><td><span class="pill tag">Negotiation</span></td><td class="num">$92,600</td><td class="num">70%</td><td class="mono" style="color: var(--danger);">2026-10-17</td><td><span class="av">MB</span></td><td><span class="pill bad"><i></i>Overdue</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Store opening bundle</a></td><td class="muted">Northfield Retail</td><td><span class="pill tag">Discovery</span></td><td class="num">$39,800</td><td class="num">30%</td><td class="mono">2026-11-20</td><td><span class="av">AS</span></td><td class="muted">Site walk-through</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Field kits pilot</a></td><td class="muted">Lumen Grid</td><td><span class="pill tag">Qualified</span></td><td class="num">$24,500</td><td class="num">20%</td><td class="mono">2026-11-28</td><td><span class="av">OK</span></td><td class="muted">Discovery call</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Sterile supply contract</a></td><td class="muted">Corvel Medical</td><td><span class="pill tag">Proposal</span></td><td class="num">$96,500</td><td class="num">50%</td><td class="mono">2026-11-30</td><td><span class="av">TN</span></td><td class="muted">Demo today 14:00</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Warehouse labels and film</a></td><td class="muted">Avalon Freight</td><td><span class="pill tag">Discovery</span></td><td class="num">$57,200</td><td class="num">30%</td><td class="mono">2026-12-05</td><td><span class="av">MB</span></td><td class="muted">Send samples</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Housekeeping supplies, 14 sites</a></td><td class="muted">Pinecrest Hotels</td><td><span class="pill tag">Qualified</span></td><td class="num">$86,000</td><td class="num">20%</td><td class="mono">2026-12-12</td><td><span class="av">OK</span></td><td class="muted">Intro with procurement</td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Cold chain packaging, 2027</a></td><td class="muted">Brightwater Foods</td><td><span class="pill tag">Proposal</span></td><td class="num">$184,000</td><td class="num">50%</td><td class="mono">2026-12-18</td><td><span class="av">OK</span></td><td><span class="pill wait"><i></i>Discount approval</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Safety equipment renewal</a></td><td class="muted">Kestrel Energy</td><td><span class="pill tag">Discovery</span></td><td class="num">$148,000</td><td class="num">30%</td><td class="mono">2026-12-20</td><td><span class="av">AS</span></td><td><span class="pill wait"><i></i>Email to approve</span></td></tr>
+          <tr><td><input type="checkbox" aria-label="Select deal"></td><td><a href="./deal.html" style="font-weight: 500;">Annual consumables</a></td><td class="muted">Orbis Packaging</td><td><span class="pill tag">Qualified</span></td><td class="num">$112,000</td><td class="num">20%</td><td class="mono">2027-01-15</td><td><span class="av">TN</span></td><td class="muted">Needs budget owner</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row muted" style="justify-content: space-between; flex-wrap: wrap; font-size: 13px;">
+      <span>Showing <span class="mono">1–10</span> of <span class="mono">142</span></span>
+      <div class="tools"><button class="btn sm" type="button">Previous</button><button class="btn sm" type="button">Next</button></div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>
